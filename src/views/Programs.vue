@@ -1,86 +1,153 @@
 <template>
     
 <div class="programs">
-   <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">Home</b-navbar-brand>
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-      <b-collapse id="nav-collapse" is-nav>
-         <b-navbar-nav>
-            <b-nav-item href="#">About</b-nav-item>
-            <b-nav-item href="#" disabled>Contacts</b-nav-item>
-         </b-navbar-nav>
-         <!-- Right aligned nav items -->
-         <b-navbar-nav class="ml-auto">
-            <b-nav-item-dropdown text="Lang" right>
-               <b-dropdown-item href="#">EN</b-dropdown-item>
-               <b-dropdown-item href="#">ES</b-dropdown-item>
-               <b-dropdown-item href="#">RU</b-dropdown-item>
-               <b-dropdown-item href="#">FA</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-nav-item-dropdown right>
-               <!-- Using 'button-content' slot -->
-               <template v-slot:button-content>
-                  <em>User</em>
-               </template>
-               <b-dropdown-item href="#">Profile</b-dropdown-item>
-               <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            </b-nav-item-dropdown>
-         </b-navbar-nav>
-      </b-collapse>
-   </b-navbar>
-   <b-container>
-      <b-row class="mt-4">
-         <b-col cols="4">
-            <b-card
-               title="Card 1"
-               img-src="https://via.placeholder.com/318x159"
-                img-alt="Image"
-               img-top
-               tag="article"
-               class="mb-2"
-               >
-               <b-card-text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
-               </b-card-text>
-            </b-card>
-         </b-col>
-         <b-col cols="4">
-            <b-card
-               title="Card 2"
-               img-src="https://via.placeholder.com/318x159"
-               img-alt="Image"
-               img-top
-               tag="article"
-               class="mb-2"
-               >
-               <b-card-text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
-               </b-card-text>
-            </b-card>
-         </b-col>
-         <b-col cols="4">
-            <b-card
-               title="Card 3"
-               img-src="https://via.placeholder.com/318x159"
-               img-alt="Image"
-               img-top
-               tag="article"
-               class="mb-2"
-               >
-               <b-card-text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
-               </b-card-text>
-            </b-card>
-         </b-col>
-         <b-col cols="12">
-            <b-card
-               class="mt-4"
-               >
-               <h4>Customer details</h4>
-               <b-table striped hover :items="items"></b-table>
-            </b-card>
-         </b-col>
+  
+   <b-container class="page-content"> 
+
+<!-- Fully Trained Service Dog Cards -->
+      <b-row class="mt-4">    
+      <h2> Fully Trained Service Dogs </h2>
+      <p>
+      We train dogs for service, match our trained dog with a qualified service dog applicant, train the applicant how to work with the dog, and support the trained team for the working life of the team.
+      </p>
       </b-row>
+
+      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
+         <b-row no-gutters>
+            <b-col md="6">
+            <b-card-img :src="this.vetImgUrl" alt="Image" class="rounded-0"></b-card-img>
+            </b-col>
+            <b-col md="6">
+            <b-card-body :title="this.vetTitle">
+               <b-card-text >
+                  <span v-html="this.vetDescription"></span>
+
+               </b-card-text>
+            </b-card-body>
+            </b-col>
+         </b-row>
+      </b-card>
+
+      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
+         <b-row no-gutters>
+            <b-col md="6">
+            <b-card-img src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/VinBentleyPortland-dec2019-scaled.jpg" alt="Image" class="rounded-0"></b-card-img>
+            </b-col>
+            <b-col md="6">
+            <b-card-body title="Autism Spectrum">
+               <b-card-text>
+                  This is a wider card with supporting text as a natural lead-in to additional content.
+                  This content is a little bit longer.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
+               </b-card-text>
+            </b-card-body>
+            </b-col>
+         </b-row>
+      </b-card>
+
+
+<!--Training Programs (testing horizontal card) -->
+      <b-row class="mt-4">    
+         <h2>Owner Trained Service Dogs </h2>
+         <p>
+            <ul>
+            <li> We support a qualified disabled person in the training of their qualified personal dog.</li> 
+               <li> Our trainers teach the owner and dog the skills necessary to be a service dog.</li>
+               <li>This program is 9-12 months long, with a minimum attendance requirement of 1-2 training sessions per week.</li>
+               <li> The length of training is dependent upon the amount of training the owner/dog team do in addition to class sessions.</li>
+            </ul>
+         </p>
+      </b-row>
+
+      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
+         <b-row no-gutters>
+             <b-col md="6">
+            <b-card-body title="Horizontal Card">
+               <b-card-text>
+                  This is a wider card with supporting text as a natural lead-in to additional content.
+                  This content is a little bit longer.
+               </b-card-text>
+            </b-card-body>
+            </b-col>
+            <b-col md="6">
+            <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+            </b-col>
+           
+         </b-row>
+      </b-card>
+
    </b-container>
 </div>
 </template>
+
+<script>
+
+import axios from 'axios';
+
+export default {
+  name: "Progams",
+
+
+  data () {
+    return {
+      //For API calls
+      results: null,
+      wordpressURL: "https://cascadeservicedogs.cyprweb.com/",
+      // For Wordpress data
+      posts: [],
+      vetSlug: "veterans",
+      vetPost: [],
+      vetTitle: "Home",
+      vetDescription: "",
+      vetImgUrl: "",
+      autismSlug: "autism",
+      autismPost: [],
+      autismTitle: "",
+      autismDescription: "",
+      autismImgUrl: "",
+      
+      
+
+    };
+  },
+
+  created: function() {
+    axios
+    .get(this.wordpressURL, { 
+      params: {
+        rest_route: "/wp/v2/posts"
+      }
+    })
+    .then(response => {
+      this.results = response.data;
+      for (let post in this.results) {
+        this.posts.push(this.results[post]);
+      }
+    this.vetPost = this.getPost(this.results, this.vetSlug);
+    this.vetTitle = this.vetPost.title.rendered;
+    this.vetDescription=this.vetPost.content.rendered;
+   this.vetImgUrl=this.vetPost.acf.image;
+      })
+     
+    .catch(error => {
+      console.log("error accessing WordPress data" + error);
+      });
+  },
+
+  methods: {
+
+    //given an array of Wordpress posts and page slug string, return the post that matches that string
+    getPost(postArray, slug) {
+      let matchingPost = "";
+      console.log("getPost called with " + postArray + " and slug: " + slug )
+      for(let i=0; i<postArray.length; i++) {
+        console.log("getPosts, matching against this slug: " + postArray[i].slug);
+        if (postArray[i].slug == slug){
+          matchingPost = postArray[i];
+        }
+      }
+      return matchingPost;
+    }
+  }
+}
+</script>

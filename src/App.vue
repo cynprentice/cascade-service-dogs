@@ -15,7 +15,7 @@
         
         <b-nav-item-dropdown text="Programs">
           <b-dropdown-item><router-link to="programs">Service Dogs</router-link> </b-dropdown-item>
-          <b-dropdown-item href="#">Training</b-dropdown-item>
+          <b-dropdown-item><router-link to="programs">Training</router-link></b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item href="#">Applications</b-nav-item>
        <b-nav-item-dropdown text="Contribute">
@@ -82,7 +82,7 @@ export default {
 #app {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   margin-top: 25px;
-  text-align: center;
+  
   color: #2c3e50;
 }
 
