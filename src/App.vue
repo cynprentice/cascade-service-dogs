@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div class="logo">
-      <b-img alt="Cascade Service Dogs logo" height="125px" center src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/cropped-cascade-service-dogs-logo.jpg"> </b-img>
+      <router-link to="/">
+        <b-img alt="Cascade Service Dogs logo" height="125px" center src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/cropped-cascade-service-dogs-logo.jpg"> </b-img>
+      </router-link>
     </div>
     <!--Navigation bar -->
     
@@ -12,19 +14,16 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        
-        <b-nav-item-dropdown text="Programs">
-          <b-dropdown-item><router-link to="programs">Service Dogs</router-link> </b-dropdown-item>
-          <b-dropdown-item><router-link to="programs">Training</router-link></b-dropdown-item>
-        </b-nav-item-dropdown>
-        <b-nav-item href="#">Applications</b-nav-item>
+        <b-nav-item><router-link to="service-dogs">Service Dogs</router-link></b-nav-item>
+        <b-nav-item><router-link to="training">Training Programs</router-link></b-nav-item>
+        <b-nav-item><router-link to="about">About</router-link></b-nav-item>
+        <b-nav-item><router-link to="contact">Contact</router-link></b-nav-item>
+        <b-nav-item>Applications</b-nav-item>
        <b-nav-item-dropdown text="Contribute">
           <b-dropdown-item href="#">Volunteer</b-dropdown-item>
           <b-dropdown-item href="#">Donate</b-dropdown-item>
         </b-nav-item-dropdown>
-        <b-nav-item href="#">About</b-nav-item>
-        <b-nav-item href="#">Contact</b-nav-item>
-        <b-nav-item href="#" disabled>Disabled</b-nav-item>
+
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -82,7 +81,6 @@ export default {
 #app {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   margin-top: 25px;
-  
   color: #2c3e50;
 }
 

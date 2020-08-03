@@ -4,7 +4,19 @@
   
    <b-container class="page-content"> 
 
-      <!-- Fully Trained Service Dog Cards -->
+      <!-- Owner Training Cards -->
+            <b-row class="mt-4">    
+         <h2>Owner Trained Service Dogs </h2>
+         <p>
+            <ul>
+            <li> We support a qualified disabled person in the training of their qualified personal dog.</li> 
+               <li> Our trainers teach the owner and dog the skills necessary to be a service dog.</li>
+               <li>This program is 9-12 months long, with a minimum attendance requirement of 1-2 training sessions per week.</li>
+               <li> The length of training is dependent upon the amount of training the owner/dog team do in addition to class sessions.</li>
+            </ul>
+         </p>
+      </b-row>
+
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
          <b-row no-gutters>
             <!--first image 
@@ -30,9 +42,7 @@
 
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
          <b-row no-gutters>
-            <b-col md="4">
-            <b-card-img :src="this.vetImgUrl" alt="Image" class="rounded-0"></b-card-img>
-            </b-col>
+
             <b-col md="8">
             <b-card-body :title="this.vetTitle">
                <b-card-text >
@@ -40,6 +50,9 @@
 
                </b-card-text>
             </b-card-body>
+            </b-col>
+        <b-col md="4">
+            <b-card-img :src="this.vetImgUrl" alt="Image" class="rounded-0"></b-card-img>
             </b-col>
          </b-row>
       </b-card>
@@ -61,35 +74,6 @@
       </b-card>
 
 
-<!--Training Programs (testing horizontal card) -->
-      <b-row class="mt-4">    
-         <h2>Owner Trained Service Dogs </h2>
-         <p>
-            <ul>
-            <li> We support a qualified disabled person in the training of their qualified personal dog.</li> 
-               <li> Our trainers teach the owner and dog the skills necessary to be a service dog.</li>
-               <li>This program is 9-12 months long, with a minimum attendance requirement of 1-2 training sessions per week.</li>
-               <li> The length of training is dependent upon the amount of training the owner/dog team do in addition to class sessions.</li>
-            </ul>
-         </p>
-      </b-row>
-
-      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row no-gutters>
-             <b-col md="6">
-            <b-card-body title="Horizontal Card">
-               <b-card-text>
-                  This is a wider card with supporting text as a natural lead-in to additional content.
-                  This content is a little bit longer.
-               </b-card-text>
-            </b-card-body>
-            </b-col>
-            <b-col md="6">
-            <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
-            </b-col>
-           
-         </b-row>
-      </b-card>
 
    </b-container>
 </div>
@@ -100,7 +84,7 @@
 import axios from 'axios';
 
 export default {
-  name: "Progams",
+  name: "Training",
 
 
   data () {
