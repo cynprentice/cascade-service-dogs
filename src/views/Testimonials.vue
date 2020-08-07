@@ -61,7 +61,7 @@
             <div v-for="testimonial in testimonials" :key="testimonial.id">
                 <b-card 
                     :title="testimonial.title"
-                    :sub-title="testimonial.acfTestimonialName"
+                    :sub-title="testimonial.acfTestimonialName + ' - ' + testimonial.acfTestimonialSubtitle"
                     :img-src="testimonial.acfTestimonialImageURL" img-alt="Card image" img-left img-width="300" img-height="300"
                     class="mb-3">
                 <b-card-text>
