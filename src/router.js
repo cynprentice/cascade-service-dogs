@@ -6,6 +6,7 @@ import ServiceDogs from './views/ServiceDogs.vue'
 import Training from './views/Training.vue'
 import About from './views/About.vue'
 import Contact from './views/Contact.vue'
+import Testimonials from './views/Testimonials.vue'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
         path: '/contact',
         name: 'contact',
         component: Contact
+      },
+      {
+        path: '/testimonials',
+        name: 'testimonials',
+        component: Testimonials
       }
   ]
 })

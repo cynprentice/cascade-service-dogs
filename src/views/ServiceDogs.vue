@@ -5,6 +5,31 @@
    <b-container class="page-content"> 
 
       <!-- Fully Trained Service Dog Cards -->
+      <!--What is a Service Dog section-->
+      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
+         <b-row >
+            <b-col md="2">
+               <b-card-img :src="this.serviceDogImgUrl1" alt="Image" class="rounded-0"></b-card-img>
+            </b-col>        
+            <b-col md="10">
+               <b-card-body :title="this.serviceDogTitle"></b-card-body>
+            </b-col>
+            <b-col md="12">
+               <b-card-body>
+                  <b-card-text >
+                     <span v-html="this.serviceDogDescription"></span>
+                  </b-card-text>
+               </b-card-body>
+            </b-col>
+            <!-- Second Image
+               <b-col md="2">
+               <b-card-img :src="this.fullyTrainedImgUrl2" alt="Image" class="rounded-0"></b-card-img>
+               </b-col>
+               -->
+         </b-row>
+      </b-card>
+
+
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
          <b-row no-gutters>
             <!--first image 
@@ -79,6 +104,11 @@ export default {
       wordpressURL: "https://cascadeservicedogs.cyprweb.com/",
       // For Wordpress data
       posts: [],
+      serviceDogSlug:"what-is-a-service-dog",
+      serviceDogPost: [],
+      serviceDogTitle: "",
+      serviceDogDescription: "",
+      serviceDogImgUrl1: "",
       fullyTrainedSlug:"fully-trained-service-dogs",
       fullyTrainedPost: [],
       fullyTrainedTitle: "",
@@ -114,6 +144,12 @@ export default {
       for (let post in this.results) {
         this.posts.push(this.results[post]);
       }
+
+      this.serviceDogPost = this.getPost(this.results, this.serviceDogSlug);
+      this.serviceDogTitle = this.serviceDogPost.title.rendered;
+      this.serviceDogDescription=this.serviceDogPost.content.rendered;
+      this.serviceDogImgUrl1=this.serviceDogPost.acf.image1;
+
       this.fullyTrainedPost = this.getPost(this.results, this.fullyTrainedSlug);
       this.fullyTrainedTitle = this.fullyTrainedPost.title.rendered;
       this.fullyTrainedDescription=this.fullyTrainedPost.content.rendered;

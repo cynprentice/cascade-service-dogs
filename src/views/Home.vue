@@ -1,37 +1,37 @@
 <template>
   <div class="home">
     <div>
-  <b-carousel
-    id="carousel-no-animation"
-    style="text-shadow: 0px 0px 2px #000"
-    no-animation
-    indicators
-    controls
-    img-width="1024"
-    img-height="480"
-  >
-    <b-carousel-slide
-      caption="Our Mission"
-      text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-      img-src="https://picsum.photos/1024/480/?image=10"
-    ></b-carousel-slide>
-    <b-carousel-slide
-      caption="Second Slide"
-      text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-      img-src="https://picsum.photos/1024/480/?image=12"
-    ></b-carousel-slide>
-    <b-carousel-slide
-      caption="Third Slide"
-      text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-      img-src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/service-dog-tank-1024x480-1.jpg"
-    ></b-carousel-slide>
-    <b-carousel-slide
-      caption="Fourth Slide"
-      text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-      img-src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/service-dog-tank-lake-rock-1024x480-1.jpg"
-    ></b-carousel-slide>
-  </b-carousel>
-</div>
+      <b-carousel
+        id="carousel-no-animation"
+        style="text-shadow: 0px 0px 2px #000"
+        no-animation
+        indicators
+        controls
+        img-width="1024"
+        img-height="480"
+      >
+        <b-carousel-slide
+          caption="Our Mission"
+          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+          img-src="https://picsum.photos/1024/480/?image=10"
+        ></b-carousel-slide>
+        <b-carousel-slide
+          caption="Second Slide"
+          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+          img-src="https://picsum.photos/1024/480/?image=12"
+        ></b-carousel-slide>
+        <b-carousel-slide
+          caption="Third Slide"
+          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+          img-src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/service-dog-tank-1024x480-1.jpg"
+        ></b-carousel-slide>
+        <b-carousel-slide
+          caption="Fourth Slide"
+          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+          img-src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/service-dog-tank-lake-rock-1024x480-1.jpg"
+        ></b-carousel-slide>
+      </b-carousel>
+    </div>
     
     <!-- Jumbotron example
       <b-jumbotron fluid container-fluid bg-variant="dark" text-variant="white">
@@ -39,16 +39,12 @@
         <template v-slot:lead>Our Mission</template>
         <hr class="my-4"> 
         <p>{{this.homePageDescription}}</p>
-      </b-jumbotron>
-    
+      </b-jumbotron>   
   -->
 
-  <hr />
-  
-
-  <b-container class="page-content">
-     
-<hr/>
+    <hr />
+    <b-container class="page-content"> 
+    <hr/>
     <b-card-group deck>
         <b-card
           title="Is a service dog right for me?"
@@ -101,7 +97,7 @@
         </b-card> 
     </b-card-group>
 
-<!-- Testimonials -->
+  <!-- Testimonials -->
     <hr/>
     <h2> Testimonials </h2>
     
@@ -176,32 +172,29 @@ export default {
       //For API calls
       results: null,
       wordpressURL: "https://cascadeservicedogs.cyprweb.com/",
+      wordpressHomeURL: "https://cascadeservicedogs.cyprweb.com/wp-json/wp/v2/posts?categories=6",
       // For Wordpress data
       posts: [],
-      homePageSlug: "our-mission",
-      homePagePost: [],
-      homePageTitle: "Home",
-      homePageDescription: "",
+      missionSlug: "our-mission",
+      missionPost: [],
+      missionTitle: "Home",
+      missionDescription: "",
       trainingDescription:"",
-
     };
   },
 
   created: function() {
     axios
-    .get(this.wordpressURL, { 
-      params: {
-        rest_route: "/wp/v2/posts"
-      }
+    .get(this.wordpressHomeURL, { 
     })
     .then(response => {
       this.results = response.data;
       for (let post in this.results) {
         this.posts.push(this.results[post]);
       }
-    this.homePagePost = this.getPost(this.results, this.homePageSlug);
-    this.homePageTitle = this.homePagePost.title.rendered;
-    this.homePageDescription=this.homePagePost.content.rendered;
+      this.missionPost = this.getPost(this.results, this.missionSlug);
+      this.missionTitle = this.missionPost.title.rendered;
+      this.missionDescription=this.missionPost.content.rendered;
       this.trainingDescription="We currently have two service dog programs training service dogs for qualified clients with traumatic brain injury (TBI), mobility and balance challenges, post-traumatic stress (PTS), and persons on the Autism Spectrum. ";
       })
      

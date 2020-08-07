@@ -55,6 +55,9 @@
     <b-col><h3>Donate</h3>
     <p>follow these instructions to make a donation</p>
     </b-col>
+     <b-col><h3><router-link to="testimonials">Testimonials</router-link></h3>
+   
+    </b-col>
   </b-row>
 </b-container>
   <!-- Footer -->
