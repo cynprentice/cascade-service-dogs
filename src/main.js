@@ -6,7 +6,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import Vue from 'vue'
 import {BootstrapVue} from 'bootstrap-vue'
-//import {NavbarPlugin} from 'bootstrap-vue'
+
 import router from './router'
 import App from './App.vue'
 
@@ -20,8 +20,8 @@ import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 
-// Install Bootstrap NavbarPlugin
-//Vue.use(NavbarPlugin)
+
+
 
 //install FontAwesome Icons
 Vue.component('font-awesome-icon', FontAwesomeIcon)

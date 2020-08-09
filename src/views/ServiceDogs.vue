@@ -3,7 +3,21 @@
 <div class="programs">
   
    <b-container class="page-content"> 
-
+      <!-- Nav for Service Dog Page -->
+      <div>
+         <b-nav tabs>
+            <b-nav-item active><a href="#vets">Vets</a></b-nav-item>
+            <b-nav-item active><a href="#" v-scroll-to="'#vets'">
+    Scroll to #vets
+</a></b-nav-item>
+            <b-nav-item active><router-link to="#" v-scroll-to="'#vets'">
+                  Scroll to #vets
+               </router-link>
+            </b-nav-item>
+            <b-nav-item>Autism</b-nav-item>
+            <b-nav-item>Apply for a Service Dog</b-nav-item>
+         </b-nav>
+         </div>
       <!-- Fully Trained Service Dog Cards -->
       <!--What is a Service Dog section-->
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
@@ -53,7 +67,7 @@
       </b-card>
 
 
-      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
+      <b-card id="vets" no-body class="overflow-hidden" style="max-width: 1024px;">
          <b-row no-gutters>
             <b-col md="4">
             <b-card-img :src="this.vetImgUrl" alt="Image" class="rounded-0"></b-card-img>
@@ -101,7 +115,7 @@ export default {
     return {
       //For API calls
       results: null,
-      wordpressURL: "https://cascadeservicedogs.cyprweb.com/",
+      wordpressServiceDogsURL: "https://cascadeservicedogs.cyprweb.com/wp-json/wp/v2/posts?categories=9",
       // For Wordpress data
       posts: [],
       serviceDogSlug:"what-is-a-service-dog",
@@ -134,10 +148,8 @@ export default {
 
   created: function() {
     axios
-    .get(this.wordpressURL, { 
-      params: {
-        rest_route: "/wp/v2/posts"
-      }
+    .get(this.wordpressServiceDogsURL, { 
+     
     })
     .then(response => {
       this.results = response.data;

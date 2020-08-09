@@ -68,10 +68,6 @@ export default {
       aboutSharonTitle: "About Sharon",
       aboutSharonDescription: "",
       aboutSharonImgUrl1: ""
-      
-      
-      
-
     };
   },
 

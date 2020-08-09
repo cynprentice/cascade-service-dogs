@@ -43,19 +43,22 @@
     <router-view/>
 
       <!-- Footer -->
-<b-container class="footer text-center" bg-variant="dark">
+<b-container class="footer text-center bg-dark text-white pt-3" fluid>
   <hr/>
   <b-row>
-    <b-col>
-      <h3>Contact Information</h3>
-      <p><a href="mailto:cprentice@seattleu.edu">info@cascadeservicedogs.org</a></p> 
-      <p>Seattle, WA</p> 
-      <p>(206)555-5555</p>
-    </b-col>
+
     <b-col><h3>Donate</h3>
-    <p>follow these instructions to make a donation</p>
+      <p>follow these instructions to make a donation</p>
     </b-col>
-     <b-col><h3><router-link to="testimonials">Testimonials</router-link></h3>
+    <b-col>
+      <p>Hours M-F 9am - 5pm</p>
+      <p><a href="mailto:cprentice@seattleu.edu">info@cascadeservicedogs.org</a></p> 
+      <p><a href="tel:1-206-555-5555"> (206)555-5555</a></p>
+    </b-col>
+     <b-col>
+       <p><router-link to="testimonials">Testimonials</router-link></p>
+       <p><router-link to="testimonials">Privacy Policy</router-link></p>
+      <p>	&copy; {{year}} Cascade Service Dogs </p>
    
     </b-col>
   </b-row>
@@ -73,9 +76,15 @@ export default {
 
   components: {
     
+},
+
+ data () {
+    return {
+     year: new Date().getFullYear()
+    };
+  }
 }
 
-}
 </script>
 
 <style >
