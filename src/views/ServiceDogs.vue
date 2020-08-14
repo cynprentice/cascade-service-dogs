@@ -6,16 +6,37 @@
       <!-- Nav for Service Dog Page -->
       <div>
          <b-nav tabs>
-            <b-nav-item active><a href="#vets">Vets</a></b-nav-item>
-            <b-nav-item active><a href="#" v-scroll-to="'#vets'">
-    Scroll to #vets
-</a></b-nav-item>
-            <b-nav-item active><router-link to="#" v-scroll-to="'#vets'">
-                  Scroll to #vets
-               </router-link>
+            <b-nav-item active>
+                <router-link
+                    :to="{
+                        name:'service-dogs',
+                        hash:'#vets'
+                    }">
+                    Vets
+                </router-link>
             </b-nav-item>
-            <b-nav-item>Autism</b-nav-item>
-            <b-nav-item>Apply for a Service Dog</b-nav-item>
+            <!--
+            <b-nav-item active><router-link to="#" v-scroll-to="'#section-two'">
+               Scroll to #section-two
+            
+            </b-nav-item>
+            -->
+            <b-nav-item><router-link
+                    :to="{
+                        name:'service-dogs',
+                        hash:'#autism'
+                    }">
+                    Autism
+                </router-link></b-nav-item>
+            <b-nav-item>
+               <router-link
+                    :to="{
+                        name:'service-dogs',
+                        hash:'#apply-for-dog'
+                    }">
+                    Apply for a Dog
+                </router-link>
+            </b-nav-item>
          </b-nav>
          </div>
       <!-- Fully Trained Service Dog Cards -->
@@ -83,7 +104,7 @@
          </b-row>
       </b-card>
 
-      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
+      <b-card no-body id="autism" class="overflow-hidden" style="max-width: 1024px;">
          <b-row no-gutters>
             <b-col md="4">
             <b-card-img :src="this.autismImgUrl" alt="Image" class="rounded-0"></b-card-img>
@@ -98,7 +119,24 @@
             </b-col>
          </b-row>
       </b-card>
+ 
+ 
+      <!--how to apply for a service dog -->
+      <b-card id="apply-for-dog" no-body class="overflow-hidden" style="max-width: 1024px;">
+         <b-row no-gutters>
+            <b-col md="4">
+            <b-card-img :src="this.applyForDogImgUrl" alt="Application Image" class="rounded-0"></b-card-img>
+            </b-col>
+            <b-col md="8">
+            <b-card-body :title="this.applyForDogTitle">
+               <b-card-text >
+                  <span v-html="this.applyForDogDescription"></span>
 
+               </b-card-text>
+            </b-card-body>
+            </b-col>
+         </b-row>
+      </b-card>
    </b-container>
 </div>
 </template>
@@ -139,6 +177,11 @@ export default {
       autismTitle: "",
       autismDescription: "",
       autismImgUrl: "",
+      applyForDogSlug: "apply-for-dog",
+      applyForDogPost: [],
+      applyForDogTitle: "",
+      applyForDogDescription: "",
+      applyForDogImgUrl: "",
       
       
       
@@ -177,6 +220,11 @@ export default {
       this.autismTitle = this.autismPost.title.rendered;
       this.autismDescription=this.autismPost.content.rendered;
       this.autismImgUrl=this.autismPost.acf.image1;
+
+      this.applyForDogPost = this.getPost(this.results, this.applyForDogSlug);
+      this.applyForDogTitle = this.applyForDogPost.title.rendered;
+      this.applyForDogDescription=this.applyForDogPost.content.rendered;
+      this.applyForDogImgUrl=this.applyForDogPost.acf.image1;
       })
      
     .catch(error => {

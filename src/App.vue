@@ -18,12 +18,13 @@
         <b-nav-item><router-link to="training">Training Programs</router-link></b-nav-item>
         <b-nav-item><router-link to="about">About</router-link></b-nav-item>
         <b-nav-item><router-link to="contact">Contact</router-link></b-nav-item>
-        <b-nav-item>Applications</b-nav-item>
+        <b-nav-item><router-link to="applications">Applications</router-link></b-nav-item>
+      <!-- Placeholder for Volunteer user stories
        <b-nav-item-dropdown text="Contribute">
           <b-dropdown-item href="#">Volunteer</b-dropdown-item>
           <b-dropdown-item href="#">Donate</b-dropdown-item>
         </b-nav-item-dropdown>
-
+-->
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -108,6 +109,13 @@ export default {
 .csd-accent-color {
     color:#8cc633;
 
+}
+.content-block {
+  padding: 20px;
+}
+
+.csd-button {
+  margin:20px;
 }
 </style>
 

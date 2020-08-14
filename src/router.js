@@ -7,10 +7,33 @@ import Training from './views/Training.vue'
 import About from './views/About.vue'
 import Contact from './views/Contact.vue'
 import Testimonials from './views/Testimonials.vue'
+import Applications from './views/Applications.vue'
 
 Vue.use(Router)
 
 export default new Router({
+  scrollBehavior(to, from, savedPosition) {
+    if(savedPosition) {
+      return savedPosition
+    }
+    /* from VUe school
+     else {
+      const position = {}
+      if (to.hash){
+        position.selector = to.hash;
+        if (document.querySelector(to.hash)){
+          return position;
+        }
+        return false
+      }
+    }
+    */
+    else if (to.hash) {
+      return {
+      selector: to.hash
+      }
+    }
+  },
   routes: [
     {
       path: '/',
@@ -46,6 +69,11 @@ export default new Router({
         path: '/testimonials',
         name: 'testimonials',
         component: Testimonials
+      },
+      {
+        path: '/applications',
+        name: 'applications',
+        component: Applications
       }
   ]
 })

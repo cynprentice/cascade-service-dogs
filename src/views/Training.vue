@@ -18,16 +18,16 @@
       </b-row>
 
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row no-gutters>
+         <b-row >
             <!--first image 
                <b-col md="2">
                <b-card-img :src="this.fullyTrainedImgUrl1" alt="Image" class="rounded-0"></b-card-img>
                </b-col>        
             -->
             <b-col md="12">
-               <b-card-body :title="this.fullyTrainedTitle">
+               <b-card-body :title="this.ownerTrainedTitle">
                   <b-card-text >
-                     <span v-html="this.fullyTrainedDescription"></span>
+                     <span v-html="this.ownerTrainedDescription"></span>
                   </b-card-text>
                </b-card-body>
             </b-col>
@@ -41,37 +41,23 @@
 
 
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row no-gutters>
+         <b-row >
 
             <b-col md="8">
-            <b-card-body :title="this.vetTitle">
+            <b-card-body :title="this.ownerTrainedTitle">
                <b-card-text >
-                  <span v-html="this.vetDescription"></span>
+                  <span v-html="this.ownerTrainedDescription"></span>
 
                </b-card-text>
             </b-card-body>
             </b-col>
         <b-col md="4">
-            <b-card-img :src="this.vetImgUrl" alt="Image" class="rounded-0"></b-card-img>
+            <b-card-img :src="this.ownerTrainedImgUrl1" alt="Image" class="rounded-0"></b-card-img>
             </b-col>
          </b-row>
       </b-card>
 
-      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row no-gutters>
-            <b-col md="4">
-            <b-card-img :src="this.autismImgUrl" alt="Image" class="rounded-0"></b-card-img>
-            </b-col>
-            <b-col md="8">
-            <b-card-body :title="this.autismTitle">
-               <b-card-text >
-                  <span v-html="this.autismDescription"></span>
-
-               </b-card-text>
-            </b-card-body>
-            </b-col>
-         </b-row>
-      </b-card>
+      
 
 
 
@@ -94,26 +80,12 @@ export default {
       wordpressTrainingURL: "https://cascadeservicedogs.cyprweb.com/wp-json/wp/v2/posts?categories=10",
       // For Wordpress data
       posts: [],
-      fullyTrainedSlug:"fully-trained-service-dogs",
-      fullyTrainedPost: [],
-      fullyTrainedTitle: "",
-      fullyTrainedDescription: "",
-      fullyTrainedImgUrl1: "",
-      fullyTrainedImgUrl2: "",
-      vetSlug: "veterans",
-      vetPost: [],
-      vetTitle: "Home",
-      vetDescription: "",
-      vetImgUrl: "",
-      autismSlug: "autism",
-      autismPost: [],
-      autismTitle: "",
-      autismDescription: "",
-      autismImgUrl: "",
-      
-      
-      
-
+      ownerTrainedSlug:"owner-trained-service-dog-program",
+      ownerTrainedPost: [],
+      ownerTrainedTitle: "",
+      ownerTrainedDescription: "",
+      ownerTrainedImgUrl1: "",
+      ownerTrainedImgUrl2: "",
     };
   },
 
@@ -127,21 +99,13 @@ export default {
       for (let post in this.results) {
         this.posts.push(this.results[post]);
       }
-      this.fullyTrainedPost = this.getPost(this.results, this.fullyTrainedSlug);
-      this.fullyTrainedTitle = this.fullyTrainedPost.title.rendered;
-      this.fullyTrainedDescription=this.fullyTrainedPost.content.rendered;
-      this.fullyTrainedImgUrl1=this.fullyTrainedPost.acf.image1;
-      this.fullyTrainedImgUrl2=this.fullyTrainedPost.acf.image2;
+      this.ownerTrainedPost = this.getPost(this.results, this.ownerTrainedSlug);
+      this.ownerTrainedTitle = this.ownerTrainedPost.title.rendered;
+      this.ownerTrainedDescription=this.ownerTrainedPost.content.rendered;
+      this.ownerTrainedImgUrl1=this.ownerTrainedPost.acf.image1;
+      this.ownerTrainedImgUrl2=this.ownerTrainedPost.acf.image2;
 
-      this.vetPost = this.getPost(this.results, this.vetSlug);
-      this.vetTitle = this.vetPost.title.rendered;
-      this.vetDescription=this.vetPost.content.rendered;
-      this.vetImgUrl=this.vetPost.acf.image1;
-
-      this.autismPost = this.getPost(this.results, this.autismSlug);
-      this.autismTitle = this.autismPost.title.rendered;
-      this.autismDescription=this.autismPost.content.rendered;
-      this.autismImgUrl=this.autismPost.acf.image1;
+     
       })
      
     .catch(error => {
