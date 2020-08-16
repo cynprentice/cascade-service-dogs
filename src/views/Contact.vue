@@ -1,6 +1,6 @@
 <template>
   <div id="contact">
-    <b-container class="page-content mb-5" >
+    <b-container class="page-content mb-5">
       <!--Contact Form -->
       
       <h2>{{this.contactTitle}}</h2>

@@ -73,7 +73,7 @@
 
 <script>
 export default {
-  name: "HomePage",
+  name: "App",
 
   components: {
     
@@ -116,6 +116,15 @@ export default {
 
 .csd-button {
   margin:20px;
+}
+
+.center {
+  text-align: center;
+}
+
+.mission {
+  margin: 50px;
+  
 }
 </style>
 

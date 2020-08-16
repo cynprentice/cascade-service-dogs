@@ -1,0 +1,1 @@
+export const wordpressURL = "https://cascadeservicedogs.cyprweb.com/";

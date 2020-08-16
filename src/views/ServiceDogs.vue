@@ -5,7 +5,7 @@
    <b-container class="page-content"> 
       <!-- Nav for Service Dog Page -->
       <div>
-         <b-nav tabs>
+         <b-nav tabs pills>
             <b-nav-item active>
                 <router-link
                     :to="{

@@ -1,5 +1,15 @@
 <template>
   <div class="home">
+        <!-- Jumbotron example
+      <b-jumbotron fluid container-fluid bg-variant="white" text-variant="dark">
+        <template v-slot:header>Cascade Service Dogs</template>
+        <template v-slot:lead>{{missionTitle}}</template>
+        <hr class="my-4"> 
+        <span v-html="this.missionDescription"></span>
+      </b-jumbotron>   
+   -->
+
+  <!-- Image Carousel -->
     <div>
       <b-carousel
         id="carousel-no-animation"
@@ -8,95 +18,54 @@
         indicators
         controls
         img-width="1024"
-        img-height="480"
+        img-height="360"
       >
-        <b-carousel-slide
-          caption="Our Mission"
-          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-          img-src="https://picsum.photos/1024/480/?image=10"
-        ></b-carousel-slide>
-        <b-carousel-slide
-          caption="Second Slide"
-          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-          img-src="https://picsum.photos/1024/480/?image=12"
-        ></b-carousel-slide>
-        <b-carousel-slide
-          caption="Third Slide"
-          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-          img-src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/service-dog-tank-1024x480-1.jpg"
-        ></b-carousel-slide>
-        <b-carousel-slide
-          caption="Fourth Slide"
-          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-          img-src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/service-dog-tank-lake-rock-1024x480-1.jpg"
-        ></b-carousel-slide>
+        <div v-for="slide in carouselPosts" :key="slide.id">
+          <b-carousel-slide
+            :caption="slide.acf.caption_title"
+            :text-html="slide.acf.caption_text"
+            :img-src="slide.acf.slide_image"
+          ></b-carousel-slide>
+          
+        </div>  
       </b-carousel>
     </div>
     
-    <!-- Jumbotron example
-      <b-jumbotron fluid container-fluid bg-variant="dark" text-variant="white">
-        <template v-slot:header>Cascade Service Dogs</template>
-        <template v-slot:lead>Our Mission</template>
-        <hr class="my-4"> 
-        <p>{{this.homePageDescription}}</p>
-      </b-jumbotron>   
-  -->
-
     <hr />
+
+    <!--Mission Statement -->
     <b-container class="page-content"> 
+      <div class="mission">
+        <h1 class="center">Cascade Service Dogs</h1>
+        <h2 >{{this.missionTitle}}</h2>
+        <span class="center" v-html="this.missionDescription"></span>
+     </div>
     <hr/>
-    <b-card-group deck>
+
+    <!-- Question Cards -->
+    
+    <b-card-group deck v-if="questionsLoaded">
+      <div v-for="question in questionPosts" :key="question.id">
         <b-card
-          title="Is a service dog right for me?"
-          img-src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/paw-hand-500x500-1.jpg"
-          img-alt="Image"
+          :title="question.title.rendered"
+          :img-src="question.acf.image1"
+          :img-alt="question.acf.image1_alt_text"
           img-top
-          tag="article"
-          style="max-width: 20rem;"
-          class="mb-2"
+          style="max-width: 25rem;"
+          class="mb-2 text-center"
         >
           <b-card-text>
-            <p>We pair service dogs with qualified clients with traumatic brain injury (TBI), mobility and balance challenges, post-traumatic stress (PTS), and persons on the Autism Spectrum.</p>
-            <p> Waiting time is 1 ½ to 2 years. </p>
+            <span  v-html="question.content.rendered"></span>
           </b-card-text>
-          
+         
           <b-button href="#" variant="success">Go somewhere</b-button>
-        </b-card>
-
-        <b-card
-          title="Can I train my own service dog?"
-          img-src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/paw-hand-500x500-1.jpg"
-          img-alt="Image"
-          img-top
-          tag="article"
-          style="max-width: 20rem;"
-          class="mb-2"
-        >
-          <b-card-text>
-            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <p>Program is 9-12 months long.</p>
-          </b-card-text>
-
-          <b-button href="#" variant="success">Go somewhere</b-button>
-        </b-card>
-
-        <b-card
-          title="How can I help?"
-          img-src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/paw-hand-500x500-1.jpg"
-          img-alt="Image"
-          img-top
-          tag="article"
-          style="max-width: 20rem;"
-          class="mb-2"
-        >
-          <b-card-text>
-            <p>Your contributions will help provide Service Dogs FREE OF CHARGE for veterans and children with disabilities and other special needs!</p>
-          </b-card-text>
-
-          <b-button href="#" variant="success">Go somewhere</b-button>
-        </b-card> 
+        </b-card>      
+      </div>
     </b-card-group>
 
+  <div v-else class="text-center">
+     <b-spinner label="Spinning" ></b-spinner>
+  </div> 
   <!-- Testimonials -->
     <hr/>
     <h2> Testimonials </h2>
@@ -162,6 +131,8 @@
 <script>
 
 import axios from 'axios';
+import { wordpressURL } from '@/common/URL.js';
+import CommonMethods from '@/common/csdFunctions.js'
 
 export default {
   name: "HomePage",
@@ -171,19 +142,31 @@ export default {
     return {
       //For API calls
       results: null,
-      wordpressURL: "https://cascadeservicedogs.cyprweb.com/",
-      wordpressHomeURL: "https://cascadeservicedogs.cyprweb.com/wp-json/wp/v2/posts?categories=6",
+      //wordpressURL: "https://cascadeservicedogs.cyprweb.com/",
+      wordpressHomeURL: wordpressURL + "/wp-json/wp/v2/posts?categories=6",
+    
       // For Wordpress data
       posts: [],
+      //for Mission Statement
       missionSlug: "our-mission",
       missionPost: [],
       missionTitle: "Home",
       missionDescription: "",
-      trainingDescription:"",
+      
+      //for Question cards
+      questionCategory: 13,
+      questionPosts: [],
+      questionsLoaded: false,
+
+      //Get Carousel Slides
+      wordpressCarouselURL:  wordpressURL + "/wp-json/wp/v2/posts?categories=12",
+      carouselPosts: [],
     };
   },
 
   created: function() {
+    this.questionsLoaded = false;
+    //get mission statement
     axios
     .get(this.wordpressHomeURL, { 
     })
@@ -192,33 +175,38 @@ export default {
       for (let post in this.results) {
         this.posts.push(this.results[post]);
       }
-      this.missionPost = this.getPost(this.results, this.missionSlug);
+
+      this.missionPost = CommonMethods.getPostBySlug(this.results, this.missionSlug)
+      //this.missionPost = this.getPost(this.results, this.missionSlug);
       this.missionTitle = this.missionPost.title.rendered;
-      this.missionDescription=this.missionPost.content.rendered;
-      this.trainingDescription="We currently have two service dog programs training service dogs for qualified clients with traumatic brain injury (TBI), mobility and balance challenges, post-traumatic stress (PTS), and persons on the Autism Spectrum. ";
+      this.missionDescription = this.$sanitize(this.missionPost.content.rendered);
+  
+      this.questionPosts = CommonMethods.getPostsByCategory(this.results, this.questionCategory)
+      this.questionsLoaded = true;
       })
+
+    .catch(error => {
+      console.log("error accessing WordPress data" + error);
+      });
+
+
+//populate Carousel Slides
+      axios
+    .get(this.wordpressCarouselURL, { 
+    })
+    .then(response => {
+      this.results = response.data;
+      for (let post in this.results) {
+        this.carouselPosts.push(this.results[post]);
+      }
+     })
      
     .catch(error => {
       console.log("error accessing WordPress data" + error);
       });
-  },
-
-  methods: {
-
-    //given an array of Wordpress posts and page slug string, return the post that matches that string
-    getPost(postArray, slug) {
-      let matchingPost = "";
-      console.log("getPost called with " + postArray + " and slug: " + slug )
-      for(let i=0; i<postArray.length; i++) {
-        console.log("getPosts, matching against this slug: " + postArray[i].slug);
-        if (postArray[i].slug == slug){
-          matchingPost = postArray[i];
-        }
-      }
-      return matchingPost;
-    }
   }
 }
+
 </script>
 
 <style scoped>
@@ -229,3 +217,4 @@ export default {
 .circle-img img {
   border-radius:50%;
 }
+
