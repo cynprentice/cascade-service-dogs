@@ -56,7 +56,7 @@
              </div>
              -->
             <!-- loop through testimonials and display them -->
-            <div v-if="hasTestimonials">
+            <div v-if="testimonialFlag">
             
             <div v-for="testimonial in testimonials" :key="testimonial.id">
                 <b-card 
@@ -89,6 +89,8 @@
 <script>
 
 import axios from 'axios';
+import Wordpress from '@/common/wordpress.js';
+//import CommonMethods from '@/common/csdFunctions.js'
 
 export default {
   name: "Testimonials",
@@ -98,10 +100,10 @@ export default {
     return {
       //For API calls
       results: null,
-      wordpressTestimonialsURL: "https://cascadeservicedogs.cyprweb.com/wp-json/wp/v2/posts?categories=4",
+      wordpressTestimonialsURL: Wordpress.wordpressURL + "/wp-json/wp/v2/posts?categories=" + Wordpress.testimonialsId,
       // For Wordpress data
       testimonials: [],
-      hasTestimonials: false,
+      testimonialFlag: true,
       visible: false     
 
     };
@@ -119,7 +121,7 @@ export default {
         let csdTestimonial = {id: "", title: "", htmlContent:"", acfTestimonialName: "", acfTestimonialSubtitle:"", acfTestimonialExcerpt:"", acfTestimonialImageURL:""};
         csdTestimonial.id = testimonial.id;
         csdTestimonial.title = testimonial.title.rendered;
-        csdTestimonial.htmlContent = testimonial.content.rendered;
+        csdTestimonial.htmlContent = this.$sanitize(testimonial.content.rendered);
         csdTestimonial.acfTestimonialName = testimonial.acf.testimonial_name;
         csdTestimonial.acfTestimonialSubtitle = testimonial.acf.testimonial_subtitle;
         csdTestimonial.acfTestimonialExcerpt = testimonial.acf.testimonial_excerpt;
@@ -133,23 +135,26 @@ export default {
     .catch(error => {
       console.log("error accessing WordPress data" + error);
       });
-  },
+    
+  }
+  
+  /*
+  ,
 
   methods: {
+    setTestimonials: function() {
+      this.testimonials = CommonMethods.getTestimonials(this.wordpressTestimonialsURL);
+    },
 
-    //given an array of Wordpress posts and page slug string, return the post that matches that string
-    getPost(postArray, slug) {
-      let matchingPost = "";
-      console.log("getPost called with " + postArray + " and slug: " + slug )
-      for(let i=0; i<postArray.length; i++) {
-        console.log("getPosts, matching against this slug: " + postArray[i].slug);
-        if (postArray[i].slug == slug){
-          matchingPost = postArray[i];
-        }
-      }
-      return matchingPost;
-    }
+    hasTestimonials: function () {
+      this.testimonialFlag = true;
+    },
+
+    doesNotHaveTestimonials: function () {
+      this.testimonialsFlag = false;
   }
+  }
+  */
 }
 </script>
 

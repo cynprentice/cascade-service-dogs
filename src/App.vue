@@ -2,68 +2,53 @@
   <div id="app">
     <div class="logo">
       <router-link to="/">
-        <b-img alt="Cascade Service Dogs logo" height="125px" center src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/cropped-cascade-service-dogs-logo.jpg"> </b-img>
+        <b-img alt="Cascade Service Dogs" height="125px" center src="https://cascadeservicedogs.cyprweb.com/wp-content/uploads/2020/07/cropped-cascade-service-dogs-logo.jpg"> </b-img>
       </router-link>
     </div>
+    
     <!--Navigation bar -->
+    <div>
+      <!-- Site Navigation -->
+      <b-navbar toggleable="lg" type="light" variant="primary">
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item><router-link to="service-dogs">Service Dogs</router-link></b-nav-item>
+            <b-nav-item><router-link to="training">Training Programs</router-link></b-nav-item>
+            <b-nav-item><router-link to="about">About</router-link></b-nav-item>
+            <b-nav-item><router-link to="contact">Contact</router-link></b-nav-item>
+            <b-nav-item><router-link to="applications">Applications</router-link></b-nav-item>
+            <b-nav-item><router-link to="testimonials">Testimonials</router-link></b-nav-item>
+          </b-navbar-nav>
+
+        <!-- Right aligned social links -->
+          <b-navbar-nav class="ml-auto" >
+            <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" right><font-awesome-icon :icon="['fab', 'facebook']" /></b-nav-item>
+            <b-nav-item href="mailto:cprentice@seattleu.edu" right><font-awesome-icon :icon="['fas', 'envelope']" /></b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+        </b-navbar>
+    </div>
     
-      <div>
-  <b-navbar toggleable="lg" type="dark" variant="dark">
     
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav>
-        <b-nav-item><router-link to="service-dogs">Service Dogs</router-link></b-nav-item>
-        <b-nav-item><router-link to="training">Training Programs</router-link></b-nav-item>
-        <b-nav-item><router-link to="about">About</router-link></b-nav-item>
-        <b-nav-item><router-link to="contact">Contact</router-link></b-nav-item>
-        <b-nav-item><router-link to="applications">Applications</router-link></b-nav-item>
-      <!-- Placeholder for Volunteer user stories
-       <b-nav-item-dropdown text="Contribute">
-          <b-dropdown-item href="#">Volunteer</b-dropdown-item>
-          <b-dropdown-item href="#">Donate</b-dropdown-item>
-        </b-nav-item-dropdown>
--->
-      </b-navbar-nav>
-
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
-     
-  <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" right><font-awesome-icon :icon="['fab', 'facebook']" /></b-nav-item>
-   <b-nav-item href="" right> <font-awesome-icon :icon="['fab', 'twitter']" /></b-nav-item>
-  <b-nav-item href="mailto:cprentice@seattleu.edu" right><font-awesome-icon :icon="['fas', 'envelope']" /></b-nav-item>
-        
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
-</div>
-      <hr />
-
-
     <router-view/>
-
-      <!-- Footer -->
-<b-container class="footer text-center bg-dark text-white pt-3" fluid>
   <hr/>
-  <b-row>
-
-    <b-col><h3>Donate</h3>
-      <p>follow these instructions to make a donation</p>
-    </b-col>
-    <b-col>
-      <p>Hours M-F 9am - 5pm</p>
-      <p><a href="mailto:cprentice@seattleu.edu">info@cascadeservicedogs.org</a></p> 
-      <p><a href="tel:1-206-555-5555"> (206)555-5555</a></p>
-    </b-col>
-     <b-col>
-       <p><router-link to="testimonials">Testimonials</router-link></p>
-       <p><router-link to="testimonials">Privacy Policy</router-link></p>
-      <p>	&copy; {{year}} Cascade Service Dogs </p>
-   
-    </b-col>
-  </b-row>
-</b-container>
+  <!-- Footer -->
+    <b-container class="footer text-center bg-primary text-white pt-3" fluid>
+    
+      <b-row>
+        <b-col>
+          <p>Hours M-F 9am - 5pm</p>
+          <p><a href="mailto:cprentice@seattleu.edu">info@cascadeservicedogs.org</a></p> 
+          <p><a href="tel:1-206-555-5555"> (206)555-5555</a></p>
+        </b-col>
+        <b-col>
+          <p><router-link to="testimonials">Privacy Policy</router-link></p>
+          <p>	&copy; {{year}} Cascade Service Dogs </p>
+      
+        </b-col>
+      </b-row>
+    </b-container>
   <!-- Footer -->
 
 
@@ -88,28 +73,91 @@ export default {
 
 </script>
 
-<style >
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
 
+<style lang="scss">
+  // Import custom SASS variable overrides
+  @import './styles/csd-styles.scss';
+
+  // Import Bootstrap and BootstrapVue source SCSS files
+  @import '~bootstrap/scss/bootstrap.scss';
+  @import '~bootstrap-vue/src/index.scss';
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+  // General style overrides and custom classes
 #app {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   margin-top: 25px;
   color: #2c3e50;
 }
 
+
+// Fonts
+h1,h2,h3,h4,h5 {
+  font-family: 'Oranienbaum', 'Palatino', Georgia, serif;
+}
+
+p {
+ font-family: 'Quicksand', Helvetica, Arial, sans-serif;
+}
+
+.nav-item a {
+   font-family: 'Oranienbaum', 'Palatino', Georgia, serif;
+}
+
+
+//Colors
+hr {
+  border-top-color:#8cc633;
+}
+
+a {
+ color: #f8f9fa;
+
+}
+
+a:hover {
+  color: #f8f9fa;
+}
+
+
+.card {
+  border: 0px;
+  
+  border-top: 1px solid #8cc633;
+  border-bottom: 1px solid #8cc633;
+  margin: 20px auto;
+}
+
+.card-header {
+  background-color: #740027;
+}
+
+.csd-secondary-color {
+  background-color: #740027;
+}
+
+//Spacing
 .logo {
   padding: 20px;
 }
-.csd-primary-color {
-    color: 	#0A57A5;
-}
-.csd-secondary-color {
-    color:#740027;
-}
-.csd-accent-color {
-    color:#8cc633;
 
+.nav-item {
+  margin: 0 10px;
 }
+
+.mission {
+  margin: 50px;
+  
+}
+
+.container {
+  margin: 30px auto;
+}
+
+
+
 .content-block {
   padding: 20px;
 }
@@ -118,13 +166,21 @@ export default {
   margin:20px;
 }
 
-.center {
-  text-align: center;
+
+
+.csd-primary-color {
+    color: 	#0A57A5;
+}
+.csd-secondary-color {
+    color:#740027;
+}
+.csd-accent-color {
+    color:#8cc633;
 }
 
-.mission {
-  margin: 50px;
-  
-}
+
+
+
 </style>
+
 

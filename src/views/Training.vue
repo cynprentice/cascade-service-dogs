@@ -3,8 +3,12 @@
 <div class="programs">
   
    <b-container class="page-content"> 
+      <!-- CSD Program Overview section -->
 
-      <!-- Owner Training Cards -->
+      <!-- 
+         Fully Trained Section -->
+
+
             <b-row class="mt-4">    
          <h2>Owner Trained Service Dogs </h2>
          <p>
@@ -39,7 +43,7 @@
          </b-row>
       </b-card>
 
-
+      <!-- Owner Trained Section -->   
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
          <b-row >
 
