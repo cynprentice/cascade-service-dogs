@@ -69,6 +69,7 @@
                 </b-card-text>
                 <b-button
                 :class="visible ? null : 'collapsed'"
+                variant="success"
                 :aria-expanded="visible ? 'true' : 'false'"
                 aria-controls="testimonial.toggleID" 
                 @click="visible = !visible"

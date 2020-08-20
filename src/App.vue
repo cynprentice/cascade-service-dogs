@@ -29,7 +29,7 @@
         </b-collapse>
         </b-navbar>
     </div>
-    
+    <hr/>
     
     <router-view/>
   <hr/>
@@ -90,6 +90,7 @@ export default {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   margin-top: 25px;
   color: #2c3e50;
+  
 }
 
 
@@ -112,13 +113,18 @@ hr {
   border-top-color:#8cc633;
 }
 
-a {
+.footer a, .nav-item a {
  color: #f8f9fa;
-
 }
+
+.btn, .btn a {
+ color: #000;
+}
+
 
 a:hover {
   color: #f8f9fa;
+  cursor: pointer;
 }
 
 
@@ -180,7 +186,32 @@ a:hover {
 
 
 
+.full-back-img {
+  position: relative;
+  max-width: 1280px;
+  height: 450px;
+  margin: auto;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+
+.background-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.6); /* Black w/opacity/see-through */
+  color: white;
+  border: 2px solid #f1f1f1;
+  border-radius: 5px;
+
+  position: absolute;
+  top: 15%;
+  right: 10%;
+
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+}
 </style>
 
 

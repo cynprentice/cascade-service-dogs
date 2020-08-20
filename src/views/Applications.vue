@@ -1,7 +1,10 @@
 <template>
     
 <div class="applications">
-  
+   <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.dogApplicationImgUrl1})`}">
+    </div>
+    
+     
    <b-container class="page-content"> 
 
       <!--  Cascade Service Dogs Applications -->
@@ -14,7 +17,7 @@
                     <b-card-body>
                         <b-card-text><span v-html="this.dogApplicationDescription"></span></b-card-text>
                         <b-button href="..\assets\Service-Dog-Application.docx" download variant="success" class="csd-button">Download Service Dog Application</b-button>
-                        <b-card-img :src="this.dogApplicationImgUrl1" alt="this.dogApplicationImg1AltText" class="rounded-0" fluid></b-card-img>
+                       <!--<b-card-img :src="this.dogApplicationImgUrl1" alt="this.dogApplicationImg1AltText" class="rounded-0" fluid></b-card-img>-->
                     </b-card-body>
                 </b-col></b-row>
 

@@ -1,7 +1,7 @@
 <template>
     
 <div class="programs">
-  
+     <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.serviceDogImgURL})`}"> </div>
    <b-container class="page-content"> 
       <!-- Nav for Service Dog Page -->
       <div>
@@ -99,7 +99,7 @@
             <b-card-body :title="this.applyForDogTitle">
                <b-card-text >
                   <span v-html="this.applyForDogDescription"></span>
-                  <b-button variant="danger"><router-link to="applications">Apply here</router-link></b-button>
+                  <b-button variant="success"><router-link to="applications">Apply here</router-link></b-button>
                </b-card-text>
             </b-card-body>
             </b-col>
@@ -130,6 +130,7 @@ export default {
       serviceDogPost: [],
       serviceDogTitle: "",
       serviceDogDescription: "",
+      serviceDogImgURL: "",
 
       vetSlug: "veterans",
       vetPost: [],
@@ -166,6 +167,7 @@ export default {
       this.serviceDogPost = CommonMethods.getPostBySlug(this.results, this.serviceDogSlug);
       this.serviceDogTitle = this.serviceDogPost.title.rendered;
       this.serviceDogDescription = this.serviceDogPost.content.rendered;
+      this.serviceDogImgURL = this.serviceDogPost.acf.image1
      
 
       this.vetPost = CommonMethods.getPostBySlug(this.results, this.vetSlug);

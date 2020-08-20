@@ -1,69 +1,38 @@
 <template>
   <div id="contact">
 
-
-    <b-container class="page-content mb-5" >
-
-<!--
-      <h2>{{this.contactTitle}}</h2>
+    <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.contactImgURL1})`}">
+       <div class="background-text">
+      <h2>{{this.contactTitle}}</h2> 
+      <hr/>
+      <span v-html="this.contactDescription"></span>
+    </div>
+    </div>
+    
+   
      
-       <b-row class="mb-4">
-          <b-col md="12">
-            <b-img 
-                :src="this.contactImgURL1" 
-                alt="Friendly Dog" 
-                class="rounded-0" 
-                height="400">
-            </b-img>
-          </b-col>
-        </b-row>
-        <b-row align-h="center">
-          <b-col md="8" class="center">     
-            <span v-html="this.contactDescription"></span>
-          </b-col>
-        </b-row>
-
-        -->
-      <!-- implemented with card 
-      <b-card no-body class="overflow-hidden">
-        <b-row no-gutters>
-          <b-col md="12">
-            <b-card-img :src="this.contactImgURL1" alt="Image" class="rounded-0" ></b-card-img>
-          </b-col>
-        </b-row>
-        <b-row align-h="center">
-          <b-col md="8" class="center">
-            <b-card-body>
-              <b-card-text>
-                <span v-html="this.contactDescription"></span>
-              </b-card-text>
-            </b-card-body>
-          </b-col>
-        </b-row>
-      </b-card>
--->
 <!-- Card overlay -->
 
 
-    
+    <!--
       <b-card
         overlay
         :img-src="this.contactImgURL1"
         :img-alt="this.contactImg1AltText"
         text-variant="white"
         :title="this.contactTitle"
+        fluid-grow
       >
         <b-card-text>
           <span v-html="this.contactDescription"></span>
         </b-card-text>
       </b-card>
-    </b-container>
-
+-->
     <hr/>
     <b-container class="mb-4 mt-4" >
         <b-row class="mb-4"> 
             <b-col md="12">
-                <h2 class="center">Ways to reach us</h2>
+                <h2 class="text-center">Ways to reach us</h2>
             </b-col>
         </b-row>
         <b-row>
@@ -115,6 +84,7 @@ export default {
       contactMail: "",
       contactTrainingCenter: "",
       contactFacebook: "",
+      
     };
   },
 
@@ -165,9 +135,7 @@ export default {
 </script>
 
 <style scoped>
-.center {
-    text-align: center;
-}
+
 
 .semi-opaque {
     background: rgba(0,0,0,.7)

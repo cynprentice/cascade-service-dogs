@@ -1,9 +1,11 @@
 <template>
     
    <div class="programs">
-   
+   <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.programsOverviewImgURL})`}">
+    </div>
       <b-container class="page-content"> 
          <!-- CSD Program Overview section -->
+
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
          <b-row >    
             <b-col md="12" class="text-center">
@@ -13,7 +15,7 @@
                <b-card-body>
                   <b-card-text >
                      <span v-html="this.programsOverviewDescription"></span>
-                     <b-button variant="danger"><router-link to="applications">Apply here</router-link></b-button>
+                     
                   </b-card-text>
                </b-card-body>
             </b-col>
@@ -27,6 +29,7 @@
                   <b-card-body :title="this.fullyTrainedTitle">
                      <b-card-text >
                         <span v-html="this.fullyTrainedDescription"></span>
+                        <b-button variant="success"><router-link to="applications">Apply here</router-link></b-button>
                      </b-card-text>
                   </b-card-body>
                </b-col>
@@ -44,7 +47,7 @@
                <b-card-body :title="this.ownerTrainedTitle">
                   <b-card-text >
                      <span v-html="this.ownerTrainedDescription"></span>
-                     <b-button variant="danger"><router-link to="applications">Apply here</router-link></b-button>
+                     <b-button variant="success"><router-link to="applications">Apply here</router-link></b-button>
                   </b-card-text>
                </b-card-body>
                </b-col>
@@ -79,6 +82,7 @@ export default {
       programsOverviewPost: [],
       programsOverviewTitle: "",
       programsOverviewDescription: "",
+      programsOverviewImgURL: "",
       
       fullyTrainedSlug:"fully-trained-service-dogs",
       fullyTrainedPost: [],
@@ -111,7 +115,9 @@ export default {
       console.log ("getting Programs Overview section Content: ")
       this.programsOverviewPost = CommonMethods.getPostBySlug(this.results, this.programsOverviewSlug);
       this.programsOverviewTitle = this.programsOverviewPost.title.rendered;
-      this.programsOverviewDescription=this.programsOverviewPost.content.rendered;
+      this.programsOverviewDescription = this.programsOverviewPost.content.rendered;
+      this.programsOverviewImgURL = this.programsOverviewPost.acf.image1;
+
  
       //get content for Fully Trained Program section
       console.log ("getting Fully Training section Content: ")
