@@ -7,14 +7,14 @@
       <!--  Cascade Service Dogs Applications -->
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
          <b-row >
-            <!-- Service Dog Application -->
-            <b-col md="6" class="content-block">
+            <!-- Cascade Service Dog Application -->
+            <b-col md="12" class="content-block">
                 <b-row><b-col>
                     <b-card-title>{{this.dogApplicationTitle}}</b-card-title>
                     <b-card-body>
                         <b-card-text><span v-html="this.dogApplicationDescription"></span></b-card-text>
                         <b-button href="..\assets\Service-Dog-Application.docx" download variant="success" class="csd-button">Download Service Dog Application</b-button>
-                        <b-card-img :src="this.dogApplicationImgUrl1" alt="Image" class="rounded-0" fluid></b-card-img>
+                        <b-card-img :src="this.dogApplicationImgUrl1" alt="this.dogApplicationImg1AltText" class="rounded-0" fluid></b-card-img>
                     </b-card-body>
                 </b-col></b-row>
 
@@ -29,17 +29,7 @@
                 </b-col></b-row>
                 -->
             </b-col>
-            <!-- Owner Training Application -->
-            <b-col md="6"  class="content-block">
-                <b-row><b-col>
-                    <b-card-title>{{this.sdTrainingApplicationTitle}}</b-card-title>
-                    <b-card-body>
-                        <b-card-text><span v-html="this.sdTrainingApplicationDescription"></span></b-card-text>
-                        <b-button href="..\assets\Owner-Training-Program-Application.docx" download variant="success" class="csd-button">Download Service Dog Application</b-button>
-                        <b-card-img :src="this.sdTrainingApplicationImgUrl1" alt="Image" class="rounded-0" fluid></b-card-img>
-                    </b-card-body>
-                </b-col></b-row>
-            </b-col>
+           
          </b-row>
       </b-card>
 
@@ -68,11 +58,16 @@ export default {
       dogApplicationTitle: "",
       dogApplicationDescription: "",
       dogApplicationImgUrl1: "",
+      dogApplicationImg1AltText: ""
+
+      /* Remove not needed. switching to single application
+      ,
       sdTrainingApplicationSlug: "sd-training-application",
       sdTrainingApplicationPost: [],
       sdTrainingApplicationTitle: "About Sharon",
       sdTrainingApplicationDescription: "",
       sdTrainingApplicationImgUrl1: ""
+      */
     };
   },
 
@@ -88,12 +83,13 @@ export default {
       this.dogApplicationTitle = this.dogApplicationPost.title.rendered;
       this.dogApplicationDescription=this.dogApplicationPost.content.rendered;
       this.dogApplicationImgUrl1=this.dogApplicationPost.acf.image1;
-    
-
+      this.dogApplicationImg1AltText = this.dogApplicationPost.acf.image1_alt_text;
+    /*
       this.sdTrainingApplicationPost = this.getPost(this.results, this.sdTrainingApplicationSlug);
       this.sdTrainingApplicationTitle = this.sdTrainingApplicationPost.title.rendered;
       this.sdTrainingApplicationDescription=this.sdTrainingApplicationPost.content.rendered;
       this.sdTrainingApplicationImgUrl1=this.sdTrainingApplicationPost.acf.image1;
+      */
       })
      
     .catch(error => {

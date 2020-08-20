@@ -37,15 +37,12 @@
                </b-nav>
             </b-card-header>
          </b-card>
-         </div>
+      </div>
       
       <!--What is a Service Dog section-->
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row >
-            <b-col md="2">
-               <b-card-img :src="this.serviceDogImgUrl1" alt="Image" class="rounded-0"></b-card-img>
-            </b-col>        
-            <b-col md="10">
+         <b-row >    
+            <b-col class="text-center" md="12">
                <b-card-body :title="this.serviceDogTitle"></b-card-body>
             </b-col>
             <b-col md="12">
@@ -55,34 +52,14 @@
                   </b-card-text>
                </b-card-body>
             </b-col>
-            <!-- Second Image
-               <b-col md="2">
-               <b-card-img :src="this.fullyTrainedImgUrl2" alt="Image" class="rounded-0"></b-card-img>
-               </b-col>
-               -->
-         </b-row>
-      </b-card>
-
-<!--
-
-      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row no-gutters>
-            <b-col md="12">
-               <b-card-body :title="this.fullyTrainedTitle">
-                  <b-card-text >
-                     <span v-html="this.fullyTrainedDescription"></span>
-                  </b-card-text>
-               </b-card-body>
-            </b-col>
 
          </b-row>
       </b-card>
--->
 
       <b-card id="vets" no-body class="overflow-hidden" style="max-width: 1024px;">
          <b-row no-gutters>
             <b-col md="4">
-            <b-card-img :src="this.vetImgUrl" alt="Image" class="rounded-0"></b-card-img>
+            <b-card-img :src="this.vetImgUrl" alt="this.vetImgAltTag" class="rounded-0"></b-card-img>
             </b-col>
             <b-col md="8">
             <b-card-body :title="this.vetTitle">
@@ -98,7 +75,7 @@
       <b-card no-body id="autism" class="overflow-hidden" style="max-width: 1024px;">
          <b-row no-gutters>
             <b-col md="4">
-            <b-card-img :src="this.autismImgUrl" alt="Image" class="rounded-0"></b-card-img>
+            <b-card-img :src="this.autismImgUrl" alt="this.autismImgAltTag"  class="rounded-0"></b-card-img>
             </b-col>
             <b-col md="8">
             <b-card-body :title="this.autismTitle">
@@ -116,13 +93,13 @@
       <b-card id="apply-for-dog" no-body class="overflow-hidden" style="max-width: 1024px;">
          <b-row no-gutters>
             <b-col md="4">
-            <b-card-img :src="this.applyForDogImgUrl" alt="Application Image" class="rounded-0"></b-card-img>
+            <b-card-img :src="this.applyForDogImgUrl" alt="this.applyForDogImgAltTag"  class="rounded-0"></b-card-img>
             </b-col>
             <b-col md="8">
             <b-card-body :title="this.applyForDogTitle">
                <b-card-text >
                   <span v-html="this.applyForDogDescription"></span>
-
+                  <b-button variant="danger"><router-link to="applications">Apply here</router-link></b-button>
                </b-card-text>
             </b-card-body>
             </b-col>
@@ -153,28 +130,27 @@ export default {
       serviceDogPost: [],
       serviceDogTitle: "",
       serviceDogDescription: "",
-      serviceDogImgUrl1: "",
-      fullyTrainedSlug:"fully-trained-service-dogs",
-      fullyTrainedPost: [],
-      fullyTrainedTitle: "",
-      fullyTrainedDescription: "",
-      fullyTrainedImgUrl1: "",
-      fullyTrainedImgUrl2: "",
+
       vetSlug: "veterans",
       vetPost: [],
-      vetTitle: "Home",
+      vetTitle: "",
       vetDescription: "",
       vetImgUrl: "",
+      vetImgAltTag: "",
+
       autismSlug: "autism",
       autismPost: [],
       autismTitle: "",
       autismDescription: "",
       autismImgUrl: "",
+      autismImgAltTag: "",
+
       applyForDogSlug: "apply-for-dog",
       applyForDogPost: [],
       applyForDogTitle: "",
       applyForDogDescription: "",
       applyForDogImgUrl: "",
+      applyForDogImgAltTag: ""
     };
   },
 
@@ -189,30 +165,26 @@ export default {
 
       this.serviceDogPost = CommonMethods.getPostBySlug(this.results, this.serviceDogSlug);
       this.serviceDogTitle = this.serviceDogPost.title.rendered;
-      this.serviceDogDescription=this.serviceDogPost.content.rendered;
-      this.serviceDogImgUrl1=this.serviceDogPost.acf.image1;
-/*
-      console.log ("getting Fully Training section Content: ")
-      this.fullyTrainedPost = CommonMethods.getPostBySlug(this.results, this.fullyTrainedSlug);
-      this.fullyTrainedTitle = this.fullyTrainedPost.title.rendered;
-      this.fullyTrainedDescription=this.fullyTrainedPost.content.rendered;
-      this.fullyTrainedImgUrl1=this.fullyTrainedPost.acf.image1;
-      this.fullyTrainedImgUrl2=this.fullyTrainedPost.acf.image2;
-*/
+      this.serviceDogDescription = this.serviceDogPost.content.rendered;
+     
+
       this.vetPost = CommonMethods.getPostBySlug(this.results, this.vetSlug);
       this.vetTitle = this.vetPost.title.rendered;
-      this.vetDescription=this.vetPost.content.rendered;
-      this.vetImgUrl=this.vetPost.acf.image1;
+      this.vetDescription = this.vetPost.content.rendered;
+      this.vetImgUrl = this.vetPost.acf.image1;
+      this.vetImgAltTag = this.vetPost.acf.image1_alt_text;
 
       this.autismPost = CommonMethods.getPostBySlug(this.results, this.autismSlug);
       this.autismTitle = this.autismPost.title.rendered;
-      this.autismDescription=this.autismPost.content.rendered;
-      this.autismImgUrl=this.autismPost.acf.image1;
+      this.autismDescription = this.autismPost.content.rendered;
+      this.autismImgUrl = this.autismPost.acf.image1;
+      this.autismImgAltTag = this.autismPost.acf.image1_alt_text;
 
       this.applyForDogPost = CommonMethods.getPostBySlug(this.results, this.applyForDogSlug);
       this.applyForDogTitle = this.applyForDogPost.title.rendered;
-      this.applyForDogDescription=this.applyForDogPost.content.rendered;
-      this.applyForDogImgUrl=this.applyForDogPost.acf.image1;
+      this.applyForDogDescription = this.applyForDogPost.content.rendered;
+      this.applyForDogImgUrl = this.applyForDogPost.acf.image1;
+      this.applyForDogImgAltTag = this.applyForDogPost.acf.image1_alt_text;
       })
      
     .catch(error => {

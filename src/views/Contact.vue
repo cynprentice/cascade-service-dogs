@@ -1,8 +1,10 @@
 <template>
   <div id="contact">
-    <b-container class="page-content mb-5">
-      <!--Contact Form -->
-      
+
+
+    <b-container class="page-content mb-5" >
+
+<!--
       <h2>{{this.contactTitle}}</h2>
      
        <b-row class="mb-4">
@@ -20,11 +22,13 @@
             <span v-html="this.contactDescription"></span>
           </b-col>
         </b-row>
-      <!-- implemented with card
+
+        -->
+      <!-- implemented with card 
       <b-card no-body class="overflow-hidden">
         <b-row no-gutters>
           <b-col md="12">
-            <b-card-img :src="this.contactImgURL1" alt="Image" class="rounded-0" img-height="300"></b-card-img>
+            <b-card-img :src="this.contactImgURL1" alt="Image" class="rounded-0" ></b-card-img>
           </b-col>
         </b-row>
         <b-row align-h="center">
@@ -37,10 +41,25 @@
           </b-col>
         </b-row>
       </b-card>
+-->
+<!-- Card overlay -->
 
-      -->
+
+    
+      <b-card
+        overlay
+        :img-src="this.contactImgURL1"
+        :img-alt="this.contactImg1AltText"
+        text-variant="white"
+        :title="this.contactTitle"
+      >
+        <b-card-text>
+          <span v-html="this.contactDescription"></span>
+        </b-card-text>
+      </b-card>
     </b-container>
-<hr/>
+
+    <hr/>
     <b-container class="mb-4 mt-4" >
         <b-row class="mb-4"> 
             <b-col md="12">
@@ -90,6 +109,7 @@ export default {
       contactTitle: "Home",
       contactDescription: "",
       contactImgURL1: "",
+      contactImg1AltText: "",
       contactEmail: "",
       contactPhone: "",
       contactMail: "",
@@ -110,6 +130,8 @@ export default {
         this.contactTitle = this.contactPost.title.rendered;
         this.contactDescription = this.contactPost.content.rendered;
         this.contactImgURL1 = this.contactPost.acf.image1;
+        this.contactImg1AltText = this.contactPost.acf.image1_alt_text;
+
         this.contactPhone = this.contactPost.acf.phone;
         this.contactEmail = this.contactPost.acf.email;
         this.contactMail = this.contactPost.acf.mail;

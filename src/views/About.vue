@@ -8,7 +8,7 @@
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
          <b-row no-gutters>
             <b-col md="4">
-            <b-card-img :src="this.aboutCSDImgUrl1" alt="Image" class="rounded-0"></b-card-img>
+            <b-card-img :src="this.aboutCSDImgUrl1" alt="this.aboutCSDImg1AltText" class="rounded-0"></b-card-img>
             </b-col>
             <b-col md="8">
             <b-card-body :title="this.aboutCSDTitle">
@@ -33,7 +33,7 @@
             </b-card-body>
             </b-col>
                         <b-col md="4">
-            <b-card-img :src="this.aboutSharonImgUrl1" alt="Image" class="rounded-0"></b-card-img>
+            <b-card-img :src="this.aboutSharonImgUrl1" alt="this.aboutSharonImg1AltText" class="rounded-0"></b-card-img>
             </b-col>
          </b-row>
       </b-card>
@@ -62,12 +62,14 @@ export default {
       aboutCSDTitle: "",
       aboutCSDDescription: "",
       aboutCSDImgUrl1: "",
-     // fullyTrainedImgUrl2: "",
+      aboutCSDImg1AltText: "",
+
       aboutSharonSlug: "about-sharon",
       aboutSharonPost: [],
       aboutSharonTitle: "About Sharon",
       aboutSharonDescription: "",
-      aboutSharonImgUrl1: ""
+      aboutSharonImgUrl1: "",
+      aboutSharonImg1AltText: "",
     };
   },
 
@@ -83,12 +85,13 @@ export default {
       this.aboutCSDTitle = this.aboutCSDPost.title.rendered;
       this.aboutCSDDescription=this.aboutCSDPost.content.rendered;
       this.aboutCSDImgUrl1=this.aboutCSDPost.acf.image1;
-    
+      this.aboutCSDImg1AltText = this.aboutCSDPost.acf.image1_alt_text;
 
       this.aboutSharonPost = this.getPost(this.results, this.aboutSharonSlug);
       this.aboutSharonTitle = this.aboutSharonPost.title.rendered;
       this.aboutSharonDescription=this.aboutSharonPost.content.rendered;
-      this.aboutSharonImgUrl1=this.aboutSharonPost.acf.image1;
+      this.aboutSharonImgUrl1 = this.aboutSharonPost.acf.image1;
+      this.aboutSharonImg1AltText = this.aboutSharonPost.acf.image1_alt_text;
       })
      
     .catch(error => {

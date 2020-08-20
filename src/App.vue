@@ -124,7 +124,7 @@ a:hover {
 
 .card {
   border: 0px;
-  
+  border-radius: 0;
   border-top: 1px solid #8cc633;
   border-bottom: 1px solid #8cc633;
   margin: 20px auto;

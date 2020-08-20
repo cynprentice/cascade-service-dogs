@@ -70,13 +70,13 @@
                 <b-button
                 :class="visible ? null : 'collapsed'"
                 :aria-expanded="visible ? 'true' : 'false'"
-                aria-controls="collapse-4"
+                aria-controls="testimonial.toggleID" 
                 @click="visible = !visible"
-                v-b-toggle:collapse-4
+                v-b-toggle="testimonial.toggleID" 
                 >
                 <span class="when-open">Read Less</span><span class="when-closed">Read More</span>
                 </b-button >
-                <b-collapse id="collapse-4" v-model="visible" class="mt-2">
+                <b-collapse :id="testimonial.toggleID" v-model="visible" class="mt-2">
                 <b-card  no-body border-variant="white" ><span v-html="testimonial.htmlContent"></span></b-card>
                 </b-collapse>
                 </b-card>
@@ -118,8 +118,9 @@ export default {
       this.results = response.data;
       for (let testimonial of this.results) {
         console.log("processing testimonial # "+ testimonial.id + " with title " + testimonial.title.rendered)
-        let csdTestimonial = {id: "", title: "", htmlContent:"", acfTestimonialName: "", acfTestimonialSubtitle:"", acfTestimonialExcerpt:"", acfTestimonialImageURL:""};
+        let csdTestimonial = {id: "", toggleID: "", title: "", htmlContent:"", acfTestimonialName: "", acfTestimonialSubtitle:"", acfTestimonialExcerpt:"", acfTestimonialImageURL:""};
         csdTestimonial.id = testimonial.id;
+        csdTestimonial.toggleID = "collapse-" + testimonial.id;
         csdTestimonial.title = testimonial.title.rendered;
         csdTestimonial.htmlContent = this.$sanitize(testimonial.content.rendered);
         csdTestimonial.acfTestimonialName = testimonial.acf.testimonial_name;
