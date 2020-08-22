@@ -3,50 +3,55 @@
 
     <div class="mb-4 full-back-img"  :style="{backgroundImage:`Url(${this.contactImgUrl1})`}"> </div>
     
-  
-    <hr/>
-    <b-container class="mb-4 mt-4" >
-      <!--  Cascade Service Dogs Application -->
-         <b-row >
-            <b-col md="12" class="content-block text-center">
-              <h2 class="mb-4">{{this.contactTitle}}</h2> 
-              <p class="reading-width"><span v-html="this.contactDescription"></span></p>
-            </b-col>
-         </b-row>
-        <hr/>
+   <!-- show loading spinner while retrieved page content from Wordpress -->
+   <div v-if="contentLoading" class="text-center"><b-spinner label="Spinning" ></b-spinner></div>
 
+   <div v-else>
+    <b-container class="page-content" >
+      <!--  Cascade Service Dogs Contact Overview-->
+
+         <b-card>
+            <b-card-title title-tag="h1" class="text-center mb-5">{{this.contactTitle}}</b-card-title>
+            <b-card-text class="mt-5 text-center">
+              <span v-html="this.contactDescription"></span>
+            </b-card-text>
+         </b-card>
+
+      <!--  Cascade Service Dogs Contact Information-->
         <b-row class="mb-5"> 
             <b-col>
                 <h2 class="text-center">Ways to reach us</h2>
             </b-col>
         </b-row>
         <b-row class="mb-5">
-            <b-col md="6" class="text-center mb-5">
+            <b-col md="6" lg="3" class="text-center mb-5">
                 <h3>Phone Number</h3>
                 {{this.contactPhone}}
             </b-col>
-            <b-col md="6" class="text-center mb-5">
+            <b-col md="6" lg="3"  class="text-center mb-5">
                 <h3>Internet</h3>
                 <p>{{this.contactEmail}}</p>
                 <p><a :href="this.contactFacebook" target="_blank">Facebook</a></p>
             </b-col>
-            <b-col md="6" class="text-center mb-5">
+            <b-col md="6"  lg="3" class="text-center mb-5">
                 <h3>Mailing Address</h3>
                 <span v-html="this.contactMail"></span>
             </b-col>
 
-            <b-col md="6" class="text-center mb-5">
+            <b-col md="6"  lg="3" class="text-center mb-5">
                 <h3>In Person</h3>
                 <span v-html="this.contactTrainingCenter"></span>
             </b-col>
       </b-row>
-     
     </b-container>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Wordpress from '@/common/wordpress.js';
+import CommonMethods from '@/common/csdFunctions.js'
 
 export default {
   name: "Contact",
@@ -55,8 +60,8 @@ export default {
     return {
       //For API calls
       results: null,
-      wordpressContactUrl:
-        "https://cascadeservicedogs.cyprweb.com/wp-json/wp/v2/posts?categories=8",
+      wordpressContactUrl: Wordpress.wordpressUrl + Wordpress.wordpressCategoryFilter + Wordpress.contactId,
+      contentLoading: true,
       // For Wordpress data
       posts: [],
       contactSlug: "contact",
@@ -75,6 +80,7 @@ export default {
   },
 
   created: function () {
+    this.contentLoading = true;
     axios
       .get(this.wordpressContactUrl, {})
       .then((response) => {
@@ -82,7 +88,7 @@ export default {
         for (let post in this.results) {
           this.posts.push(this.results[post]);
         }
-        this.contactPost = this.getPost(this.results, this.contactSlug);
+        this.contactPost = CommonMethods.getPostBySlug(this.results, this.contactSlug);
         this.contactTitle = this.contactPost.title.rendered;
         this.contactDescription = this.contactPost.content.rendered;
         this.contactImgUrl1 = this.contactPost.acf.image1;
@@ -94,41 +100,13 @@ export default {
         this.contactPhone = this.contactPost.acf.phone;
         this.contactFacebook = this.contactPost.acf.facebook;
         this.contactTrainingCenter = this.contactPost.acf.training_center;
+        this.contentLoading = false;
       })
 
       .catch((error) => {
         console.log("error accessing WordPress data" + error);
       });
-  },
-
-  methods: {
-    //given an array of Wordpress posts and page slug string, return the post that matches that string
-    getPost(postArray, slug) {
-      let matchingPost = "";
-      console.log("getPost called with " + postArray + " and slug: " + slug);
-      for (let i = 0; i < postArray.length; i++) {
-        console.log(
-          "getPosts, matching against this slug: " + postArray[i].slug
-        );
-        if (postArray[i].slug == slug) {
-          matchingPost = postArray[i];
-        }
-      }
-      return matchingPost;
-    },
-  },
+  }
 };
 </script>
 
-<style scoped>
-
-
-
-.reading-width {
-max-width: 700px;
-margin: auto;
-} 
-.semi-opaque {
-    background: rgba(0,0,0,.7)
-}
-</style>

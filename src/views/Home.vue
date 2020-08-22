@@ -37,6 +37,7 @@
     <div v-if="questionsLoaded">
     <b-card-group deck  >
         <b-card v-if="this.questionPosts[0]"
+          title-tag="h2"
           :title="this.questionPosts[0].title.rendered"
           :img-src="this.questionPosts[0].acf.image1"
           :img-alt="this.questionPosts[0].acf.image1_alt_text"
@@ -51,6 +52,7 @@
           <b-button  variant="success"><router-link to="service-dogs">Learn about service dogs</router-link></b-button>
         </b-card>      
       <b-card v-if="this.questionPosts[1]"
+          title-tag="h2"
           :title="this.questionPosts[1].title.rendered"
           :img-src="this.questionPosts[1].acf.image1"
           :img-alt="this.questionPosts[1].acf.image1_alt_text"

@@ -1,76 +1,77 @@
 <template>
     
 <div class="programs">
-     <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.serviceDogImgUrl})`}"> </div>
-   <b-container class="page-content"> 
+   <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.serviceDogImgUrl})`}"> </div>
+
+   <!-- show loading spinner while retrieved page content from Wordpress -->
+   <div v-if="contentLoading" class="text-center"><b-spinner label="Spinning" ></b-spinner></div>
+
+   <div v-else>
+      <b-container class="page-content"> 
+         
+         <!--What is a Service Dog section-->
+         <b-card>
+            <b-card-title title-tag="h1" class="text-center mb-5">{{this.serviceDogTitle}}</b-card-title>
+            <b-card-text class="mt-5">
+               <span v-html="this.serviceDogDescription"></span>
+            </b-card-text>
+         </b-card>
       
-      <!--What is a Service Dog section-->
-      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row >    
-            <b-col class="text-center" md="12">
-               <b-card-body :title="this.serviceDogTitle"></b-card-body>
-            </b-col>
-            <b-col md="12">
-               <b-card-body>
+   <!-- Service Dog for Vets section-->
+         <b-card id="vets" no-body  >
+            <b-row>
+               <b-col md="4" >
+               <b-card-img :src="this.vetImgUrl" alt="this.vetImgAltTag" class="rounded-0"></b-card-img>
+               </b-col>
+               <b-col md="8">
+               <b-card-body title-tag="h2" :title="this.vetTitle">
                   <b-card-text >
-                     <span v-html="this.serviceDogDescription"></span>
+                     <span v-html="this.vetDescription"></span>
+
                   </b-card-text>
                </b-card-body>
-            </b-col>
+               </b-col>
+            </b-row>
+         </b-card>
 
-         </b-row>
-      </b-card>
+      <!-- Service Dog for Autism section-->
+         <b-card no-body id="autism" >
+            <b-row>
+               <b-col md="4">
+               <b-card-img :src="this.autismImgUrl" alt="this.autismImgAltTag"  class="rounded-0"></b-card-img>
+               </b-col>
+               <b-col md="8">
+               <b-card-body title-tag="h2" :title="this.autismTitle">
+                  <b-card-text >
+                     <span v-html="this.autismDescription"></span>
 
-      <b-card id="vets" no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row>
-            <b-col md="4" >
-            <b-card-img :src="this.vetImgUrl" alt="this.vetImgAltTag" class="rounded-0"></b-card-img>
-            </b-col>
-            <b-col md="8">
-            <b-card-body :title="this.vetTitle">
-               <b-card-text >
-                  <span v-html="this.vetDescription"></span>
+                  </b-card-text>
+               </b-card-body>
+               </b-col>
+            </b-row>
+         </b-card>
+   
+   
+         <!--how to apply for a service dog -->
+         <b-card id="apply-for-dog" no-body  >
+            <b-row>
+               <b-col md="4">
+               <b-card-img :src="this.applyForDogImgUrl" alt="this.applyForDogImgAltTag"  class="rounded-0"></b-card-img>
+               </b-col>
+               <b-col md="8" >
+               <b-card-body title-tag="h2" :title="this.applyForDogTitle">
+                  <b-card-text >
+                     <span v-html="this.applyForDogDescription"></span>
+                     <b-button variant="success"><router-link to="applications">Apply here</router-link></b-button>
+                  </b-card-text>
+               </b-card-body>
+               </b-col>
+            </b-row>
+         </b-card>
+      </b-container>
+      </div>
 
-               </b-card-text>
-            </b-card-body>
-            </b-col>
-         </b-row>
-      </b-card>
 
-      <b-card no-body id="autism" class="overflow-hidden" style="max-width: 1024px;">
-         <b-row>
-            <b-col md="4">
-            <b-card-img :src="this.autismImgUrl" alt="this.autismImgAltTag"  class="rounded-0"></b-card-img>
-            </b-col>
-            <b-col md="8">
-            <b-card-body :title="this.autismTitle">
-               <b-card-text >
-                  <span v-html="this.autismDescription"></span>
-
-               </b-card-text>
-            </b-card-body>
-            </b-col>
-         </b-row>
-      </b-card>
- 
- 
-      <!--how to apply for a service dog -->
-      <b-card id="apply-for-dog" no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row>
-            <b-col md="4">
-            <b-card-img :src="this.applyForDogImgUrl" alt="this.applyForDogImgAltTag"  class="rounded-0"></b-card-img>
-            </b-col>
-            <b-col md="8" >
-            <b-card-body :title="this.applyForDogTitle">
-               <b-card-text >
-                  <span v-html="this.applyForDogDescription"></span>
-                  <b-button variant="success"><router-link to="applications">Apply here</router-link></b-button>
-               </b-card-text>
-            </b-card-body>
-            </b-col>
-         </b-row>
-      </b-card>
-   </b-container>
 </div>
 </template>
 
@@ -89,6 +90,7 @@ export default {
       //For API calls
       results: null,
       wordpressServiceDogsUrl:  Wordpress.wordpressUrl + Wordpress.wordpressCategoryFilter + Wordpress.serviceDogsId,
+      contentLoading: true,
       // For Wordpress data
       posts: [],
       serviceDogSlug:"what-is-a-service-dog",
@@ -120,7 +122,8 @@ export default {
     };
   },
 
-  created: function() {
+  created: function() { 
+     this.contentLoading = true;
     axios
     .get(this.wordpressServiceDogsUrl, {})
     .then(response => {
@@ -152,6 +155,8 @@ export default {
       this.applyForDogDescription = this.applyForDogPost.content.rendered;
       this.applyForDogImgUrl = this.applyForDogPost.acf.image1;
       this.applyForDogImgAltTag = this.applyForDogPost.acf.image1_alt_text;
+
+      this.contentLoading = false;
       })
      
     .catch(error => {

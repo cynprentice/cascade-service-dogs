@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Programs from './views/Programs.vue'
 import ServiceDogs from './views/ServiceDogs.vue'
 import Training from './views/Training.vue'
 import About from './views/About.vue'
@@ -17,18 +16,6 @@ export default new Router({
     if(savedPosition) {
       return savedPosition
     }
-    /* from VUe school
-     else {
-      const position = {}
-      if (to.hash){
-        position.selector = to.hash;
-        if (document.querySelector(to.hash)){
-          return position;
-        }
-        return false
-      }
-    }
-    */
     else if (to.hash) {
       return {
       selector: to.hash
@@ -39,48 +26,69 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'Cascade Service Dogs - Home Page'
+      }
     },
-    {
-        path: '/programs',
-        name: 'programs',
-        component: Programs
-      },
       {
         path: '/service-dogs',
         name: 'service-dogs',
-        component: ServiceDogs
+        component: ServiceDogs,
+        meta: {
+          title: 'Cascade Service Dogs - Service Dog Programs'
+        }
       },
       {
         path: '/training',
         name: 'training',
-        component: Training
+        component: Training,
+        meta: {
+          title: 'Cascade Service Dogs - Training Programs'
+        }
       },
       {
         path: '/about',
         name: 'about',
-        component: About
+        component: About,
+        meta: {
+          title: 'Cascade Service Dogs - About'
+        }
       },
       {
         path: '/contact',
         name: 'contact',
-        component: Contact
+        component: Contact,
+        meta: {
+          title: 'Contact Cascade Service Dogs'
+        }
       },
       {
         path: '/testimonials',
         name: 'testimonials',
-        component: Testimonials
+        component: Testimonials,
+        meta: {
+          title: 'Cascade Service Dogs - Testimonials'
+        }
       },
       {
         path: '/applications',
         name: 'applications',
-        component: Applications
+        component: Applications,
+        meta: {
+          title: 'Cascade Service Dogs - Applications'
+        }
       },
       {
         path: '/privacy-policy',
         name: 'privacy-policy',
-        component: PrivacyPolicy
+        component: PrivacyPolicy,
+        meta: {
+          title: 'Cascade Service Dogs - Privacy Policy'
+        }
       }
   
   ]
+
 })
+

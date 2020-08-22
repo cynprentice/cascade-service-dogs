@@ -2,12 +2,6 @@
 import './styles/csd-styles.scss'
 
 
-//import Bootstrap css
-//import 'bootstrap/dist/css/bootstrap.css'
-//import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-
-
 import Vue from 'vue'
 
 import router from './router'
@@ -29,11 +23,9 @@ Vue.use(BootstrapVue)
 Vue.use(VueSanitize);
 
 
-
-
 //install FontAwesome Icons
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-//library.add(faUserSecret)
+
 library.add(faFacebook, faTwitter, faEnvelope)
 
 Vue.config.productionTip = false

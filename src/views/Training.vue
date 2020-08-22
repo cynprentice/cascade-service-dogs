@@ -1,35 +1,29 @@
 <template>
-    
    <div class="programs">
-   <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.programsOverviewImgUrl})`}">
-    </div>
-      <b-container class="page-content"> 
+      <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.programsOverviewImgUrl})`}">
+      </div>
+
+<!-- show loading spinner while retrieved page content from Wordpress -->
+   <div v-if="contentLoading" class="text-center"><b-spinner label="Spinning" ></b-spinner></div>
+
+   <div v-else>
+      <b-container class="page-content">
          <!-- CSD Program Overview section -->
+         <b-card>
+            <b-card-title title-tag="h1" class="text-center mb-5">{{this.programsOverviewTitle}}</b-card-title>
+            <b-card-text class="mt-5">
+              <span v-html="this.programsOverviewDescription"></span>
+            </b-card-text>
+         </b-card>
 
-      <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row >    
-            <b-col md="12" class="text-center">
-               <b-card-body :title="this.programsOverviewTitle"></b-card-body>
-            </b-col>
-            <b-col md="12">
-               <b-card-body>
-                  <b-card-text >
-                     <span v-html="this.programsOverviewDescription"></span>
-                     
-                  </b-card-text>
-               </b-card-body>
-            </b-col>
-
-         </b-row>
-      </b-card>
          <!--  Fully Trained Section -->
-         <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
+         <b-card no-body>
             <b-row>
                <b-col md="8">
-                  <b-card-body :title="this.fullyTrainedTitle">
-                     <b-card-text >
+                  <b-card-body title-tag="h2" :title="this.fullyTrainedTitle">
+                     <b-card-text  >
                         <span v-html="this.fullyTrainedDescription"></span>
-                        <b-button variant="success"><router-link to="applications">Apply here</router-link></b-button>
+                        <b-button variant="success" class="mt-4"><router-link to="applications">Apply here</router-link></b-button>
                      </b-card-text>
                   </b-card-body>
                </b-col>
@@ -41,13 +35,13 @@
 
 
          <!-- Owner Trained Section -->   
-         <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
+         <b-card no-body>
             <b-row >
                <b-col md="8">
-               <b-card-body :title="this.ownerTrainedTitle">
+               <b-card-body title-tag="h2" :title="this.ownerTrainedTitle">
                   <b-card-text >
                      <span v-html="this.ownerTrainedDescription"></span>
-                     <b-button variant="success"><router-link to="applications">Apply here</router-link></b-button>
+                     <b-button variant="success" class="mt-4"><router-link to="applications">Apply here</router-link></b-button>
                   </b-card-text>
                </b-card-body>
                </b-col>
@@ -56,9 +50,9 @@
                </b-col>
             </b-row>
          </b-card>
-
       </b-container>
    </div>
+ </div>
 </template>
 
 <script>
@@ -76,6 +70,7 @@ export default {
       //For API calls
       results: null,
       wordpressTrainingUrl: Wordpress.wordpressUrl + Wordpress.wordpressCategoryFilter + Wordpress.trainingId,
+      contentLoading: true,
       // For Wordpress data
       posts: [],
       programsOverviewSlug:"programs-overview",
@@ -101,11 +96,12 @@ export default {
   },
 
   created: function() {
+     this.contentLoading = true;
     axios
     .get(this.wordpressTrainingUrl, { 
       
     })
-    .then(response => {
+    .then(response => { 
       this.results = response.data;
       for (let post in this.results) {
         this.posts.push(this.results[post]);
@@ -133,6 +129,7 @@ export default {
       this.ownerTrainedDescription=this.ownerTrainedPost.content.rendered;
       this.ownerTrainedImgUrl1=this.ownerTrainedPost.acf.image1;
       this.ownerTrainedImgAltTag=this.ownerTrainedPost.acf.image1_alt_text;
+      this.contentLoading = false;
       })
      
     .catch(error => {

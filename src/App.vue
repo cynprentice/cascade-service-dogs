@@ -23,8 +23,8 @@
 
         <!-- Right aligned social links -->
           <b-navbar-nav class="ml-auto" >
-            <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" target="_blank" right><font-awesome-icon :icon="['fab', 'facebook']" /></b-nav-item>
-            <b-nav-item href="mailto:cprentice@seattleu.edu" right><font-awesome-icon :icon="['fas', 'envelope']" /></b-nav-item>
+            <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" target="_blank" alt="Facebook" right><font-awesome-icon :icon="['fab', 'facebook']" /></b-nav-item>
+            <b-nav-item href="mailto:cprentice@seattleu.edu" right alt="Email Cascade Service Dogs"><font-awesome-icon :icon="['fas', 'envelope']" /></b-nav-item>
           </b-navbar-nav>
         </b-collapse>
         </b-navbar>
@@ -39,7 +39,7 @@
       <b-row>
         <b-col sm="6">
           <p>Hours M-F 9am - 5pm</p>
-          <p><a href="mailto:cprentice@seattleu.edu">info@cascadeservicedogs.org</a></p> 
+          <p><a href="mailto:cprentice@seattleu.edu">cprentice@seattleu.edu</a></p> 
           <p><a href="tel:1-206-555-5555"> (206)555-5555</a></p>
         </b-col>
         <b-col sm="6">
@@ -152,6 +152,9 @@ a:hover {
 }
 
 //Spacing
+.page-contet {
+  max-width: 1024px;
+}
 .logo {
   padding: 20px;
 }
