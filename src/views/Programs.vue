@@ -107,7 +107,7 @@ export default {
     return {
       //For API calls
       results: null,
-      wordpressURL: "https://cascadeservicedogs.cyprweb.com/",
+      wordpressUrl: "https://cascadeservicedogs.cyprweb.com/",
       // For Wordpress data
       posts: [],
       fullyTrainedSlug:"fully-trained-service-dogs",
@@ -135,7 +135,7 @@ export default {
 
   created: function() {
     axios
-    .get(this.wordpressURL, { 
+    .get(this.wordpressUrl, { 
       params: {
         rest_route: "/wp/v2/posts"
       }

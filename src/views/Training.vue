@@ -1,7 +1,7 @@
 <template>
     
    <div class="programs">
-   <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.programsOverviewImgURL})`}">
+   <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.programsOverviewImgUrl})`}">
     </div>
       <b-container class="page-content"> 
          <!-- CSD Program Overview section -->
@@ -24,7 +24,7 @@
       </b-card>
          <!--  Fully Trained Section -->
          <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-            <b-row no-gutters>
+            <b-row>
                <b-col md="8">
                   <b-card-body :title="this.fullyTrainedTitle">
                      <b-card-text >
@@ -42,7 +42,7 @@
 
          <!-- Owner Trained Section -->   
          <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-            <b-row no-gutters>
+            <b-row >
                <b-col md="8">
                <b-card-body :title="this.ownerTrainedTitle">
                   <b-card-text >
@@ -75,14 +75,14 @@ export default {
     return {
       //For API calls
       results: null,
-      wordpressTrainingURL: Wordpress.wordpressURL + Wordpress.wordpressCategoryFilter + Wordpress.trainingId,
+      wordpressTrainingUrl: Wordpress.wordpressUrl + Wordpress.wordpressCategoryFilter + Wordpress.trainingId,
       // For Wordpress data
       posts: [],
       programsOverviewSlug:"programs-overview",
       programsOverviewPost: [],
       programsOverviewTitle: "",
       programsOverviewDescription: "",
-      programsOverviewImgURL: "",
+      programsOverviewImgUrl: "",
       
       fullyTrainedSlug:"fully-trained-service-dogs",
       fullyTrainedPost: [],
@@ -102,7 +102,7 @@ export default {
 
   created: function() {
     axios
-    .get(this.wordpressTrainingURL, { 
+    .get(this.wordpressTrainingUrl, { 
       
     })
     .then(response => {
@@ -116,7 +116,7 @@ export default {
       this.programsOverviewPost = CommonMethods.getPostBySlug(this.results, this.programsOverviewSlug);
       this.programsOverviewTitle = this.programsOverviewPost.title.rendered;
       this.programsOverviewDescription = this.programsOverviewPost.content.rendered;
-      this.programsOverviewImgURL = this.programsOverviewPost.acf.image1;
+      this.programsOverviewImgUrl = this.programsOverviewPost.acf.image1;
 
  
       //get content for Fully Trained Program section

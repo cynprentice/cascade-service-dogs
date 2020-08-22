@@ -1,5 +1,5 @@
 export default {
-    'wordpressURL': "https://cascadeservicedogs.cyprweb.com/",
+    'wordpressUrl': "https://cascadeservicedogs.cyprweb.com/",
     'wordpressCategoryFilter': "/wp-json/wp/v2/posts?categories=",
     // Add category ids
     'testimonialsId': "4",
@@ -10,7 +10,8 @@ export default {
     'trainingId': "10",
     'applicationsId': "11",
     'homePageCarouselId': "12",
-    'questionsId': "13"
+    'questionsId': "13",
+    'privacyPolicyId': "14"
 
 
 }

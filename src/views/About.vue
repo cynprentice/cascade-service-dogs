@@ -1,12 +1,14 @@
 <template>
     
 <div class="programs">
-  
+  <!-- add banner image -->
+  <div class="mb-4 full-back-img"  :style="{backgroundImage:`Url(${this.aboutImgUrl1})`}"> </div>
+
    <b-container class="page-content"> 
 
       <!-- About Cascade Service Dogs -->
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row no-gutters>
+         <b-row >
             <b-col md="4">
             <b-card-img :src="this.aboutCSDImgUrl1" alt="this.aboutCSDImg1AltText" class="rounded-0"></b-card-img>
             </b-col>
@@ -23,7 +25,7 @@
 
 <!-- About Sharon -->
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row no-gutters>
+         <b-row >
             <b-col md="8">
             <b-card-body :title="this.aboutSharonTitle">
                <b-card-text >
@@ -54,9 +56,15 @@ export default {
     return {
       //For API calls
       results: null,
-      wordpressAboutURL: "https://cascadeservicedogs.cyprweb.com/wp-json/wp/v2/posts?categories=7",
+      wordpressAboutUrl: "https://cascadeservicedogs.cyprweb.com/wp-json/wp/v2/posts?categories=7",
       // For Wordpress data
       posts: [],
+
+      aboutSlug: "about",
+      aboutPost: [],
+      aboutImgUrl1: "",
+      aboutImg1AltText: "",
+
       aboutCSDSlug: "about-csd",
       aboutCSDPost: [],
       aboutCSDTitle: "",
@@ -75,12 +83,18 @@ export default {
 
   created: function() {
     axios
-    .get(this.wordpressAboutURL, {})
+    .get(this.wordpressAboutUrl, {})
     .then(response => {
       this.results = response.data;
       for (let post in this.results) {
         this.posts.push(this.results[post]);
       }
+
+      this.aboutPost = this.getPost(this.results, this.aboutSlug);
+      this.aboutImgUrl1=this.aboutPost.acf.image1;
+      this.aboutImg1AltText = this.aboutPost.acf.image1_alt_text;
+
+
       this.aboutCSDPost = this.getPost(this.results, this.aboutCSDSlug);
       this.aboutCSDTitle = this.aboutCSDPost.title.rendered;
       this.aboutCSDDescription=this.aboutCSDPost.content.rendered;

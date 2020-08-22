@@ -18,6 +18,7 @@
             :caption="slide.acf.caption_title"
             :text-html="slide.acf.caption_text"
             :img-src="slide.acf.slide_image"
+            content-visible-up="md"
           ></b-carousel-slide>
           
         </div>  
@@ -47,7 +48,7 @@
             <span  v-html="this.questionPosts[1].content.rendered"></span>
           </b-card-text>
          
-          <b-button  variant="danger"><router-link to="service-dogs">Learn about service dogs</router-link></b-button>
+          <b-button  variant="success"><router-link to="service-dogs">Learn about service dogs</router-link></b-button>
         </b-card>      
       <b-card v-if="this.questionPosts[1]"
           :title="this.questionPosts[1].title.rendered"
@@ -61,7 +62,7 @@
             <span  v-html="this.questionPosts[1].content.rendered"></span>
           </b-card-text>
          
-          <b-button variant="danger"><router-link to="training">Learn about training programs</router-link></b-button>
+          <b-button variant="success"><router-link to="training">Learn about training programs</router-link></b-button>
         </b-card>      
         
     </b-card-group>
@@ -89,7 +90,7 @@ export default {
     return {
       //For API calls
       results: null,
-      wordpressHomeURL: Wordpress.wordpressURL + Wordpress.wordpressCategoryFilter + Wordpress.homeId,
+      wordpressHomeUrl: Wordpress.wordpressUrl + Wordpress.wordpressCategoryFilter + Wordpress.homeId,
     
       // For Wordpress data
       posts: [],
@@ -105,7 +106,7 @@ export default {
       questionsLoaded: false,
 
       //Get Carousel Slides
-      wordpressCarouselURL:  Wordpress.wordpressURL + Wordpress.wordpressCategoryFilter + Wordpress.homePageCarouselId,
+      wordpressCarouselUrl:  Wordpress.wordpressUrl + Wordpress.wordpressCategoryFilter + Wordpress.homePageCarouselId,
       carouselPosts: [],
     };
   },
@@ -114,7 +115,7 @@ export default {
     this.questionsLoaded = false;
     //get mission statement
     axios
-    .get(this.wordpressHomeURL, { 
+    .get(this.wordpressHomeUrl, { 
     })
     .then(response => {
       this.results = response.data;
@@ -138,7 +139,7 @@ export default {
 
 //populate Carousel Slides
       axios
-    .get(this.wordpressCarouselURL, { 
+    .get(this.wordpressCarouselUrl, { 
     })
     .then(response => {
       this.results = response.data;

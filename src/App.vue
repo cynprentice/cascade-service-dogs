@@ -23,7 +23,7 @@
 
         <!-- Right aligned social links -->
           <b-navbar-nav class="ml-auto" >
-            <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" right><font-awesome-icon :icon="['fab', 'facebook']" /></b-nav-item>
+            <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" target="_blank" right><font-awesome-icon :icon="['fab', 'facebook']" /></b-nav-item>
             <b-nav-item href="mailto:cprentice@seattleu.edu" right><font-awesome-icon :icon="['fas', 'envelope']" /></b-nav-item>
           </b-navbar-nav>
         </b-collapse>
@@ -43,9 +43,8 @@
           <p><a href="tel:1-206-555-5555"> (206)555-5555</a></p>
         </b-col>
         <b-col>
-          <p><router-link to="testimonials">Privacy Policy</router-link></p>
+          <p><router-link to="privacy-policy">Privacy Policy</router-link></p>
           <p>	&copy; {{year}} Cascade Service Dogs </p>
-      
         </b-col>
       </b-row>
     </b-container>
@@ -123,7 +122,7 @@ hr {
 
 
 a:hover {
-  color: #f8f9fa;
+  color: #dee2e6;
   cursor: pointer;
 }
 
@@ -138,6 +137,14 @@ a:hover {
 
 .card-header {
   background-color: #740027;
+}
+
+.card-header-pills > .nav-item {
+  background: white;
+  border-radius: 5px;
+}
+.card-header-pills > .nav-item a {
+  color: #740027;
 }
 
 .csd-secondary-color {

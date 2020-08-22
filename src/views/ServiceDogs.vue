@@ -1,11 +1,11 @@
 <template>
     
 <div class="programs">
-     <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.serviceDogImgURL})`}"> </div>
+     <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.serviceDogImgUrl})`}"> </div>
    <b-container class="page-content"> 
       <!-- Nav for Service Dog Page -->
       <div>
-         <b-card title="Card Title" no-body>
+         <b-card title="Service Dogs Navigation" no-body>
             <b-card-header header-tag="nav">
                <b-nav  card-header pills>
                   <b-nav-item >
@@ -14,7 +14,7 @@
                               name:'service-dogs',
                               hash:'#vets'
                         }">
-                        Vets
+                        Veterans
                      </router-link>
                   </b-nav-item>
 
@@ -57,8 +57,8 @@
       </b-card>
 
       <b-card id="vets" no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row no-gutters>
-            <b-col md="4">
+         <b-row>
+            <b-col md="4" >
             <b-card-img :src="this.vetImgUrl" alt="this.vetImgAltTag" class="rounded-0"></b-card-img>
             </b-col>
             <b-col md="8">
@@ -73,7 +73,7 @@
       </b-card>
 
       <b-card no-body id="autism" class="overflow-hidden" style="max-width: 1024px;">
-         <b-row no-gutters>
+         <b-row>
             <b-col md="4">
             <b-card-img :src="this.autismImgUrl" alt="this.autismImgAltTag"  class="rounded-0"></b-card-img>
             </b-col>
@@ -91,11 +91,11 @@
  
       <!--how to apply for a service dog -->
       <b-card id="apply-for-dog" no-body class="overflow-hidden" style="max-width: 1024px;">
-         <b-row no-gutters>
+         <b-row>
             <b-col md="4">
             <b-card-img :src="this.applyForDogImgUrl" alt="this.applyForDogImgAltTag"  class="rounded-0"></b-card-img>
             </b-col>
-            <b-col md="8">
+            <b-col md="8" >
             <b-card-body :title="this.applyForDogTitle">
                <b-card-text >
                   <span v-html="this.applyForDogDescription"></span>
@@ -123,14 +123,14 @@ export default {
     return {
       //For API calls
       results: null,
-      wordpressServiceDogsURL:  Wordpress.wordpressURL + Wordpress.wordpressCategoryFilter + Wordpress.serviceDogsId,
+      wordpressServiceDogsUrl:  Wordpress.wordpressUrl + Wordpress.wordpressCategoryFilter + Wordpress.serviceDogsId,
       // For Wordpress data
       posts: [],
       serviceDogSlug:"what-is-a-service-dog",
       serviceDogPost: [],
       serviceDogTitle: "",
       serviceDogDescription: "",
-      serviceDogImgURL: "",
+      serviceDogImgUrl: "",
 
       vetSlug: "veterans",
       vetPost: [],
@@ -157,7 +157,7 @@ export default {
 
   created: function() {
     axios
-    .get(this.wordpressServiceDogsURL, {})
+    .get(this.wordpressServiceDogsUrl, {})
     .then(response => {
       this.results = response.data;
       for (let post in this.results) {
@@ -167,7 +167,7 @@ export default {
       this.serviceDogPost = CommonMethods.getPostBySlug(this.results, this.serviceDogSlug);
       this.serviceDogTitle = this.serviceDogPost.title.rendered;
       this.serviceDogDescription = this.serviceDogPost.content.rendered;
-      this.serviceDogImgURL = this.serviceDogPost.acf.image1
+      this.serviceDogImgUrl = this.serviceDogPost.acf.image1
      
 
       this.vetPost = CommonMethods.getPostBySlug(this.results, this.vetSlug);
