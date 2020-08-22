@@ -37,12 +37,12 @@
     <b-container class="footer text-center bg-primary text-white pt-3" fluid>
     
       <b-row>
-        <b-col>
+        <b-col sm="6">
           <p>Hours M-F 9am - 5pm</p>
           <p><a href="mailto:cprentice@seattleu.edu">info@cascadeservicedogs.org</a></p> 
           <p><a href="tel:1-206-555-5555"> (206)555-5555</a></p>
         </b-col>
-        <b-col>
+        <b-col sm="6">
           <p><router-link to="privacy-policy">Privacy Policy</router-link></p>
           <p>	&copy; {{year}} Cascade Service Dogs </p>
         </b-col>

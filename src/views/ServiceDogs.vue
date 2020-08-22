@@ -3,41 +3,6 @@
 <div class="programs">
      <div class="mb-4 full-back-img"  :style="{backgroundImage:`url(${this.serviceDogImgUrl})`}"> </div>
    <b-container class="page-content"> 
-      <!-- Nav for Service Dog Page -->
-      <div>
-         <b-card title="Service Dogs Navigation" no-body>
-            <b-card-header header-tag="nav">
-               <b-nav  card-header pills>
-                  <b-nav-item >
-                     <router-link
-                        :to="{
-                              name:'service-dogs',
-                              hash:'#vets'
-                        }">
-                        Veterans
-                     </router-link>
-                  </b-nav-item>
-
-                  <b-nav-item><router-link
-                        :to="{
-                              name:'service-dogs',
-                              hash:'#autism'
-                        }">
-                        Autism
-                     </router-link></b-nav-item>
-                  <b-nav-item>
-                     <router-link
-                        :to="{
-                              name:'service-dogs',
-                              hash:'#apply-for-dog'
-                        }">
-                        Apply for a Dog
-                     </router-link>
-                  </b-nav-item>
-               </b-nav>
-            </b-card-header>
-         </b-card>
-      </div>
       
       <!--What is a Service Dog section-->
       <b-card no-body class="overflow-hidden" style="max-width: 1024px;">
