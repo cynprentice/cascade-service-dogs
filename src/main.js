@@ -8,6 +8,7 @@ import router from './router'
 import App from './App.vue'
 import {BootstrapVue} from 'bootstrap-vue'
 import VueSanitize from "vue-sanitize";
+import VueAnalytics from 'vue-analytics';
 
 
 //Import FontAwesome icons
@@ -25,14 +26,21 @@ Vue.use(VueSanitize);
 
 //install FontAwesome Icons
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-
 library.add(faFacebook, faTwitter, faEnvelope)
 
+//Google Analytics
+
+Vue.use(VueAnalytics, {
+  id: 'UA-176126579-1',
+  router
+})
+
 Vue.config.productionTip = false
+
+
 
 new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')
-
 

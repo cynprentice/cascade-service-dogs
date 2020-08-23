@@ -13,7 +13,7 @@
             <b-row >
                 <b-col class="content-block">
                     <b-row><b-col>
-                        <b-card-title class="text-center">{{this.privacyPolicyTitle}}</b-card-title>
+                        <b-card-title title-tag="h1" class="text-center">{{this.privacyPolicyTitle}}</b-card-title>
                         <b-card-body>
                             <b-card-text><span v-html="this.privacyPolicyDescription"></span></b-card-text>                       
                         </b-card-body>

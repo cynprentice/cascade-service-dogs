@@ -23,11 +23,11 @@
 
         <!-- Right aligned social links -->
           <b-navbar-nav class="ml-auto" >
-            <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" target="_blank" alt="Facebook Logo" aria-label="Navigate to Facebook" right>
-              <font-awesome-icon :icon="['fab', 'facebook']" />
+            <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" target="_blank"  right>
+              <font-awesome-icon :icon="['fab', 'facebook']" aria-label="Navigate to Facebook"/>
             </b-nav-item>
-            <b-nav-item href="mailto:cprentice@seattleu.edu" right aria-label="Email Cascade Service Dogs">
-              <font-awesome-icon :icon="['fas', 'envelope']" />
+            <b-nav-item href="mailto:cprentice@seattleu.edu" right >
+              <font-awesome-icon :icon="['fas', 'envelope']" aria-label="Email Cascade Service Dogs"/>
             </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
@@ -174,8 +174,6 @@ a:hover, .nav-item:hover {
 .csd-button {
   margin:20px;
 }
-
-
 
 .csd-primary-color {
     color: 	#0A57A5;
