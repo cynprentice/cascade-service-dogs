@@ -18,6 +18,7 @@
             :caption="slide.acf.caption_title"
             :text-html="slide.acf.caption_text"
             :img-src="slide.acf.slide_image"
+            :img-alt="slide.acf.img_alt_text"
             content-visible-up="md"
           ></b-carousel-slide>
           
@@ -157,13 +158,4 @@ export default {
 }
 
 </script>
-
-<style scoped>
-.circle {
-  border-radius:50%;
-}
-
-.circle-img img {
-  border-radius:50%;
-}
 

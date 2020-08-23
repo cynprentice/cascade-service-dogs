@@ -9,22 +9,26 @@
     <!--Navigation bar -->
     <div>
       <!-- Site Navigation -->
-      <b-navbar toggleable="lg" type="light" variant="primary">
+      <b-navbar toggleable="lg" type="dark" variant="primary" role="navigation">
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item><router-link to="service-dogs">Service Dogs</router-link></b-nav-item>
-            <b-nav-item><router-link to="training">Training Programs</router-link></b-nav-item>
-            <b-nav-item><router-link to="about">About</router-link></b-nav-item>
-            <b-nav-item><router-link to="contact">Contact</router-link></b-nav-item>
-            <b-nav-item><router-link to="applications">Applications</router-link></b-nav-item>
-            <b-nav-item><router-link to="testimonials">Testimonials</router-link></b-nav-item>
+          <b-navbar-nav id="CSD-main-navigation">
+            <b-nav-item to="service-dogs">Service Dogs</b-nav-item>
+            <b-nav-item to="training">Training Programs</b-nav-item>
+            <b-nav-item to="about">About</b-nav-item>
+            <b-nav-item to="contact">Contact</b-nav-item>
+            <b-nav-item to="applications">Applications</b-nav-item>
+            <b-nav-item to="testimonials">Testimonials</b-nav-item>
           </b-navbar-nav>
 
         <!-- Right aligned social links -->
           <b-navbar-nav class="ml-auto" >
-            <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" target="_blank" alt="Facebook" right><font-awesome-icon :icon="['fab', 'facebook']" /></b-nav-item>
-            <b-nav-item href="mailto:cprentice@seattleu.edu" right alt="Email Cascade Service Dogs"><font-awesome-icon :icon="['fas', 'envelope']" /></b-nav-item>
+            <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" target="_blank" alt="Facebook Logo" aria-label="Navigate to Facebook" right>
+              <font-awesome-icon :icon="['fab', 'facebook']" />
+            </b-nav-item>
+            <b-nav-item href="mailto:cprentice@seattleu.edu" right aria-label="Email Cascade Service Dogs">
+              <font-awesome-icon :icon="['fas', 'envelope']" />
+            </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
         </b-navbar>
@@ -98,21 +102,26 @@ h1,h2,h3,h4,h5 {
   font-family: 'Oranienbaum', 'Palatino', Georgia, serif;
 }
 
-p {
- font-family: 'Quicksand', Helvetica, Arial, sans-serif;
-}
-
 .nav-item a {
    font-family: 'Oranienbaum', 'Palatino', Georgia, serif;
 }
 
+p {
+ font-family: 'Quicksand', Helvetica, Arial, sans-serif;
+}
+
 
 //Colors
+
+#CSD-main-navigation a{
+  color: rgba(255,255,255,.8);
+}
+
 hr {
   border-top-color:#8cc633;
 }
 
-.footer a, .nav-item a {
+.footer a {
  color: #f8f9fa;
 }
 
@@ -120,12 +129,10 @@ hr {
  color: #000;
 }
 
-
-a:hover {
-  color: #dee2e6;
+a:hover, .nav-item:hover {
+  text-decoration: underline;
   cursor: pointer;
 }
-
 
 .card {
   border: 0px;
@@ -135,24 +142,10 @@ a:hover {
   margin: 20px auto;
 }
 
-.card-header {
-  background-color: #740027;
-}
 
-.card-header-pills > .nav-item {
-  background: white;
-  border-radius: 5px;
-}
-.card-header-pills > .nav-item a {
-  color: #740027;
-}
-
-.csd-secondary-color {
-  background-color: #740027;
-}
 
 //Spacing
-.page-contet {
+.page-content {
   max-width: 1024px;
 }
 .logo {
