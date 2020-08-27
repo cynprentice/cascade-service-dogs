@@ -47,7 +47,7 @@
           class="mb-2 text-center"
         >
           <b-card-text>
-            <span  v-html="this.questionPosts[1].content.rendered"></span>
+            <span  v-html="this.questionPosts[0].content.rendered"></span>
           </b-card-text>
          
           <b-button  variant="success"><router-link to="service-dogs">Learn about service dogs</router-link></b-button>
