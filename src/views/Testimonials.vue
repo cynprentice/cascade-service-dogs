@@ -60,7 +60,6 @@ export default {
       contentLoading: true,
       // For Wordpress data
       testimonials: [],
-     // testimonialFlag: true,
       visible: false     
 
     };
@@ -89,7 +88,6 @@ export default {
           
         this.testimonials.push(csdTestimonial);
       }
-       //this.hasTestimonials=true;
        this.contentLoading = false;
       })
      

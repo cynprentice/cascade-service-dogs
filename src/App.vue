@@ -7,7 +7,7 @@
     </div>
     
     <!--Navigation bar -->
-    <div>
+    <div id="main-nav">
       <!-- Site Navigation -->
       <b-navbar toggleable="lg" type="dark" variant="primary" role="navigation">
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -23,11 +23,12 @@
 
         <!-- Right aligned social links -->
           <b-navbar-nav class="ml-auto" >
-            <b-nav-item href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" target="_blank"  right>
-              <font-awesome-icon :icon="['fab', 'facebook']" aria-label="Navigate to Facebook"/>
+            <b-nav-item id="facebook-link" href="https://www.facebook.com/Cascade-Service-Dogs-516485575189284/" target="_blank" right 
+            :link-attrs="this.ariaFacebook">
+              <font-awesome-icon :icon="['fab', 'facebook']" aria-hidden="true"/>
             </b-nav-item>
-            <b-nav-item href="mailto:cprentice@seattleu.edu" right >
-              <font-awesome-icon :icon="['fas', 'envelope']" aria-label="Email Cascade Service Dogs"/>
+            <b-nav-item href="mailto:cprentice@seattleu.edu" right :link-attrs="this.ariaEmail">
+              <font-awesome-icon :icon="['fas', 'envelope']" aria-hidden="true"/>
             </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
@@ -69,7 +70,9 @@ export default {
 
  data () {
     return {
-     year: new Date().getFullYear()
+     year: new Date().getFullYear(),
+     ariaFacebook: {'aria-label': "Facebook"},
+     ariaEmail: {'aria-label': "Email Cascade Service Dogs"}
     };
   }
 }

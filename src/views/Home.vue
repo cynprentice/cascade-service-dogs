@@ -127,7 +127,6 @@ export default {
       }
 
       this.missionPost = CommonMethods.getPostBySlug(this.results, this.missionSlug)
-      //this.missionPost = this.getPost(this.results, this.missionSlug);
       this.missionTitle = this.missionPost.title.rendered;
       this.missionDescription = this.$sanitize(this.missionPost.content.rendered);
   
